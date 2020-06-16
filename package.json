@@ -1,13 +1,12 @@
 {
-  "name": "hello",
-  "version": "0.0.0",
-  "description": "A blank schematics",
+  "name": "@garygrossgarten/ngx-tailwind",
+  "version": "0.1.5",
+  "description": "Add tailwind to an Angular Workspace",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js",
-    "start": "npm run build && cd angular-workspace && schematics ..:hello --debug false --name example",
-    "start:generate": "npm run build && cd angular-workspace && schematics ..:generate --debug false --name example"
+    "start": "npm run build && cd angular-workspace && schematics ..:ng-add --debug false"
   },
   "keywords": [
     "schematics"
@@ -18,15 +17,12 @@
   "dependencies": {
     "@angular-devkit/core": "^8.0.2",
     "@angular-devkit/schematics": "^8.0.2",
-    "@schematics/angular": "^8.1.0",
-    "@types/jasmine": "^3.3.9",
-    "@types/node": "^8.0.31",
-    "clipboardy": "^2.3.0",
-    "jasmine": "^3.3.1",
-    "quicktype-core": "^6.0.56",
-    "ts-morph": "^7.0.2"
+    "@schematics/angular": "^8.1.0"
   },
   "devDependencies": {
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "@types/jasmine": "^3.3.9",
+    "@types/node": "^8.0.31",
+    "jasmine": "^3.3.1"
   }
 }

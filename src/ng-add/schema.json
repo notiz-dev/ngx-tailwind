@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "NGX_ADD_TAILWIND",
+  "title": "Add Tailwind to Angular Workspace",
+  "type": "object",
+  "description": "Add Tailwind to Angular Workspace",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The project in which we want to generate our component",
+      "$default": {
+        "$source": "projectName"
+      }
+    }
+  }
+}
