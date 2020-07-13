@@ -24,7 +24,6 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "latest",
     "@angular-devkit/build-angular": "~0.900.2",
     "@angular/cli": "~9.0.2",
     "@angular/compiler-cli": "~9.0.1",
@@ -40,6 +39,7 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "ngx-build-plus": "latest",
     "postcss-import": "latest",
     "postcss-loader": "latest",
     "postcss-scss": "latest",

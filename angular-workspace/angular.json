@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/angular-workspace",
             "index": "src/index.html",
@@ -31,9 +31,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "cutomWebpackConfig": {
-              "path": "./webpack.config.js"
-            }
+            "extraWebpackConfig": "./webpack.config.js"
           },
           "configurations": {
             "production": {
@@ -67,12 +65,10 @@
           }
         },
         "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "options": {
             "browserTarget": "angular-workspace:build",
-            "cutomWebpackConfig": {
-              "path": "./webpack.config.js"
-            }
+            "extraWebpackConfig": "./webpack.config.js"
           },
           "configurations": {
             "production": {

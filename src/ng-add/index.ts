@@ -77,7 +77,7 @@ function addDependencies(): Rule {
 
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Dev,
-      name: "@angular-builders/custom-webpack",
+      name: "ngx-build-plus",
       version: "latest",
     });
   };
@@ -100,7 +100,7 @@ function updateStyles(project: ProjectDefinition): Rule {
 function initTailwind(project: ProjectDefinition): Rule {
   return async () => {
     try {
-      await asyncExec(`npx tailwindcss init --full`, { cwd: project.root });
+      await asyncExec(`npx tailwindcss init`, { cwd: project.root });
     } catch (e) {
       console.error(e);
     }
@@ -140,16 +140,16 @@ function updateAngularJSON(project: string): Rule {
     if (angularConfig) {
       const json = JSON.parse(angularConfig);
       json.projects[project].architect.build.builder =
-        "@angular-builders/custom-webpack:browser";
+        "ngx-build-plus:browser";
       json.projects[project].architect.build.options = {
         ...json.projects[project].architect.build.options,
-        customWebpackConfig: { path: "./webpack.config.js" },
+        extraWebpackConfig: "./webpack.config.js" ,
       };
       json.projects[project].architect.serve.builder =
-        "@angular-builders/custom-webpack:dev-server";
+        "ngx-build-plus:dev-server";
       json.projects[project].architect.serve.options = {
         ...json.projects[project].architect.serve.options,
-        customWebpackConfig: { path: "./webpack.config.js" },
+        extraWebpackConfig: "./webpack.config.js" ,
       };
 
       host.overwrite("/angular.json", JSON.stringify(json, null, 2));
