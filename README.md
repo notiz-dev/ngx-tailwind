@@ -1,5 +1,7 @@
 # Add Tailwind CSS to your Angular project
 
+[![npm version](https://badge.fury.io/js/%40garygrossgarten%2Fngx-tailwind.svg)](https://www.npmjs.com/package/@garygrossgarten/ngx-tailwind)
+
 Simple [Angular](https://angular.io/) schematic that initializes [Tailwind CSS](https://tailwindcss.com/) in your project and adds a custom webpack config to your build process.
 
 ## Installation
