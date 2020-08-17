@@ -6,7 +6,8 @@
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js",
-    "start": "npm run build && cd angular-workspace && schematics ..:ng-add --debug false"
+    "start:dev": "npm run build && cd angular-workspace && schematics ..:ng-add",
+    "start": "npm run build && cd angular-workspace && schematics ..:ng-add --debug false --tailwindVersion 1.6.2"
   },
   "keywords": [
     "schematics"
@@ -20,9 +21,10 @@
     "@schematics/angular": "^8.1.0"
   },
   "devDependencies": {
-    "typescript": "~3.8.3",
     "@types/jasmine": "^3.3.9",
     "@types/node": "^8.0.31",
-    "jasmine": "^3.3.1"
+    "jasmine": "^3.3.1",
+    "prettier": "~2.0.5",
+    "typescript": "~3.8.3"
   }
 }
