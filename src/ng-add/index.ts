@@ -3,20 +3,22 @@ import {
   SchematicContext,
   Tree,
   chain,
-  SchematicsException
-} from "@angular-devkit/schematics";
-
-import { Schema } from "./schema";
-import { NodePackageInstallTask } from "@angular-devkit/schematics/tasks";
+  SchematicsException,
+  url,
+  apply,
+  mergeWith,
+} from '@angular-devkit/schematics';
+import { Schema } from './schema';
+import {
+  NodePackageInstallTask,
+  RunSchematicTask,
+} from '@angular-devkit/schematics/tasks';
 import {
   addPackageJsonDependency,
   NodeDependencyType,
-} from "@schematics/angular/utility/dependencies";
-import { getWorkspace } from "@schematics/angular/utility/workspace";
-import { exec } from "child_process";
-import { promisify } from "util";
-import { ProjectDefinition } from "@angular-devkit/core/src/workspace";
-const asyncExec = promisify(exec);
+} from '@schematics/angular/utility/dependencies';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
+import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 
 export function ngAdd(_options: Schema): Rule {
   return async (host: Tree) => {
@@ -26,59 +28,60 @@ export function ngAdd(_options: Schema): Rule {
     if (!projectName) {
       throw new SchematicsException('Option "project" is required.');
     }
+    console.log('project name', projectName);
 
     const project = workspace.projects.get(projectName);
 
     if (!project) {
       throw new SchematicsException(
-        `Project ${projectName} is not defined in this workspace.`
+        `Project ${projectName} is not defined in this workspace.`,
       );
     }
 
-    if (project.extensions["projectType"] !== "application") {
+    if (project.extensions['projectType'] !== 'application') {
       throw new SchematicsException(
-        `@angular/elements requires a project type of "application" but ${projectName} isn't.`
+        `@angular/elements requires a project type of "application" but ${projectName} isn't.`,
       );
     }
     return chain([
-      addDependencies(),
+      addDependencies(_options),
       updateStyles(project),
-      addWebpackConfig(project),
+      addWebpackConfig(),
       updateAngularJSON(projectName),
       install(),
-      initTailwind(project),
+      tailwindInit(_options),
     ]);
   };
 }
-function addDependencies(): Rule {
+function addDependencies(_options: Schema): Rule {
   return (host: Tree) => {
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Dev,
-      name: "tailwindcss",
-      version: "latest",
+      name: 'tailwindcss',
+      version: _options.tailwindVersion,
     });
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Dev,
-      name: "postcss-scss",
-      version: "latest",
-    });
-
-    addPackageJsonDependency(host, {
-      type: NodeDependencyType.Dev,
-      name: "postcss-import",
-      version: "latest",
+      name: 'postcss-scss',
+      version: 'latest',
     });
 
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Dev,
-      name: "postcss-loader",
-      version: "latest",
+      name: 'postcss-import',
+      version: 'latest',
     });
 
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Dev,
-      name: "ngx-build-plus",
-      version: "latest",
+      name: 'postcss-loader',
+      version: 'latest',
+    });
+
+    addPackageJsonDependency(host, {
+      type: NodeDependencyType.Dev,
+      name: 'ngx-build-plus',
+      version: 'latest',
     });
   };
 }
@@ -91,68 +94,50 @@ function updateStyles(project: ProjectDefinition): Rule {
       0,
       `@import 'tailwindcss/base';
 @import 'tailwindcss/components';
-@import 'tailwindcss/utilities'; \n`
+@import 'tailwindcss/utilities'; \n`,
     );
     host.commitUpdate(recorder);
   };
 }
 
-function initTailwind(project: ProjectDefinition): Rule {
-  return async () => {
-    try {
-      await asyncExec(`npx tailwindcss init`, { cwd: project.root });
-    } catch (e) {
-      console.error(e);
+function tailwindInit(_options: Schema): Rule {
+  return (_tree: Tree, context: SchematicContext) => {
+    if (!_options.skipTailwindInit) {
+      const packageInstall = context.addTask(new NodePackageInstallTask());
+      context.addTask(new RunSchematicTask('tailwind-init', {}), [
+        packageInstall,
+      ]);
     }
+    return _tree;
   };
 }
 
-function addWebpackConfig(project: ProjectDefinition): Rule {
-  return async (host: Tree) => {
-    host.create(
-      project.root + "/webpack.config.js",
-      `module.exports = {
-  module: {
-      rules: [
-          {
-              test: /\.scss$/,
-              loader: 'postcss-loader',
-              options: {
-                  ident: 'postcss',
-                  syntax: 'postcss-scss',
-                  plugins: () => [
-                      require('postcss-import'),
-                      require('tailwindcss'),
-                      require('autoprefixer'),
-                  ]
-              }
-          }
-      ]
-  }
-};`
-    );
+function addWebpackConfig(): Rule {
+  return async (_host: Tree) => {
+    const sourceTemplates = url('./templates/webpack');
+    const sourceParametrizedTemplates = apply(sourceTemplates, []);
+    return mergeWith(sourceParametrizedTemplates);
   };
 }
 
 function updateAngularJSON(project: string): Rule {
   return async (host: Tree) => {
-    const angularConfig = host.read("/angular.json")?.toString();
+    const angularConfig = host.read('/angular.json')?.toString();
     if (angularConfig) {
       const json = JSON.parse(angularConfig);
-      json.projects[project].architect.build.builder =
-        "ngx-build-plus:browser";
+      json.projects[project].architect.build.builder = 'ngx-build-plus:browser';
       json.projects[project].architect.build.options = {
         ...json.projects[project].architect.build.options,
-        extraWebpackConfig: "./webpack.config.js" ,
+        extraWebpackConfig: './webpack.config.js',
       };
       json.projects[project].architect.serve.builder =
-        "ngx-build-plus:dev-server";
+        'ngx-build-plus:dev-server';
       json.projects[project].architect.serve.options = {
         ...json.projects[project].architect.serve.options,
-        extraWebpackConfig: "./webpack.config.js" ,
+        extraWebpackConfig: './webpack.config.js',
       };
 
-      host.overwrite("/angular.json", JSON.stringify(json, null, 2));
+      host.overwrite('/angular.json', JSON.stringify(json, null, 2));
     }
   };
 }

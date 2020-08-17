@@ -11,6 +11,16 @@
       "$default": {
         "$source": "projectName"
       }
+    },
+    "skipTailwindInit": {
+      "type": "boolean",
+      "description": "Skip initializing Tailwind.",
+      "default": false
+    },
+    "tailwindVersion": {
+      "type": "string",
+      "description": "The Tailwind version to be installed.",
+      "default": "latest"
     }
   }
 }
