@@ -7,7 +7,7 @@
     "build:watch": "tsc -p tsconfig.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "start:dev": "npm run build && cd angular-workspace && schematics ..:ng-add",
-    "start": "npm run build && cd angular-workspace && schematics ..:ng-add --debug false --tailwindVersion 1.6.2"
+    "start": "npm run build && cd angular-workspace && schematics ..:ng-add --debug false --tailwindVersion 1.9.5"
   },
   "keywords": [
     "schematics"
@@ -19,15 +19,15 @@
     "save": "devDependencies"
   },
   "dependencies": {
-    "@angular-devkit/core": "^8.0.2",
-    "@angular-devkit/schematics": "^8.0.2",
-    "@schematics/angular": "^8.1.0"
+    "@angular-devkit/core": "^10.1.2",
+    "@angular-devkit/schematics": "^10.1.2",
+    "@schematics/angular": "^10.1.2"
   },
   "devDependencies": {
     "@types/jasmine": "^3.3.9",
-    "@types/node": "^8.0.31",
+    "@types/node": "^12.11.1",
     "jasmine": "^3.3.1",
-    "prettier": "~2.0.5",
-    "typescript": "~3.8.3"
+    "prettier": "~2.1.2",
+    "typescript": "~3.9.7"
   }
 }
