@@ -8,11 +8,13 @@ Simple [Angular](https://angular.io/) schematic that initializes [Tailwind CSS](
 
 Run
 
-`ng add @garygrossgarten/ngx-tailwind`
+```bash
+ng add @garygrossgarten/ngx-tailwind
 
-or optionally
+# or
 
-`ng add @garygrossgarten/ngx-tailwind --project <MY_PROJECT>`
+ng add @garygrossgarten/ngx-tailwind --project <MY_PROJECT>
+```
 
 ## Additional options
 
