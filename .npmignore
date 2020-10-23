@@ -1,2 +1,9 @@
 # Ignores TypeScript files, but keeps definitions.
 !*.d.ts
+
+# source
+angular-workspace
+.prettierrc
+
+# misc
+.DS_Store

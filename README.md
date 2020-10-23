@@ -1,6 +1,6 @@
 # Add Tailwind CSS to your Angular project
 
-[![npm version](https://badge.fury.io/js/%40garygrossgarten%2Fngx-tailwind.svg)](https://www.npmjs.com/package/@garygrossgarten/ngx-tailwind)
+[![npm version](https://badge.fury.io/js/ngx-tailwind.svg)](https://www.npmjs.com/package/ngx-tailwind)
 
 Simple [Angular](https://angular.io/) schematic initializing [Tailwind CSS](https://tailwindcss.com/) in your project and adds a custom webpack config to your build process.
 
@@ -9,11 +9,11 @@ Simple [Angular](https://angular.io/) schematic initializing [Tailwind CSS](http
 Run
 
 ```bash
-ng add @garygrossgarten/ngx-tailwind
+ng add ngx-tailwind
 
 # or
 
-ng add @garygrossgarten/ngx-tailwind --project <MY_PROJECT>
+ng add ngx-tailwind --project <MY_PROJECT>
 ```
 
 Example output
@@ -35,7 +35,7 @@ UPDATE angular.json (3828 bytes)
 You can pass additional flags to customize the schematic. For example, if you want to install a different version for **Tailwind** use `--tailwindVersion` flag:
 
 ```bash
-ng add @garygrossgarten/ngx-tailwind --tailwindVersion 1.9.5
+ng add ngx-tailwind --tailwindVersion 1.9.5
 ```
 
 All available flags:
@@ -54,7 +54,7 @@ All available flags:
 Advanced usage
 
 ```bash
-ng add @garygrossgarten/ngx-tailwind --cssFormat scss --tailwindVersion 1.9.5 --ngxBuildPlusVersion 10.1.1 --postcssImportVersion 12.0.1 --postcssLoaderVersion 4.0.4 --postcssScssVersion 3.0.2
+ng add ngx-tailwind --cssFormat scss --tailwindVersion 1.9.5 --ngxBuildPlusVersion 10.1.1 --postcssImportVersion 12.0.1 --postcssLoaderVersion 4.0.4 --postcssScssVersion 3.0.2
 ```
 
 ## Developing

@@ -1,13 +1,15 @@
 {
-  "name": "@garygrossgarten/ngx-tailwind",
-  "version": "0.3.0",
+  "name": "ngx-tailwind",
+  "version": "0.5.0",
   "description": "Add tailwind to an Angular Workspace",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "start:dev": "npm run build && cd angular-workspace && schematics ..:ng-add",
-    "start": "npm run build && cd angular-workspace && schematics ..:ng-add --debug false --tailwindVersion 1.9.5 --ngxBuildPlusVersion 10.1.1 --postcssImportVersion 12.0.1 --postcssLoaderVersion 4.0.4 --postcssScssVersion 3.0.2"
+    "start": "npm run build && cd angular-workspace && schematics ..:ng-add --debug false --tailwindVersion 1.9.5",
+    "changelog": "conventional-changelog -p angular -i ./CHANGELOG.md -s",
+    "rocket": "npm run build && npm publish"
   },
   "keywords": [
     "schematics"
