@@ -12,9 +12,22 @@
   "keywords": [
     "schematics"
   ],
-  "author": "",
+  "author": "Gary Großgarten",
+  "contributors": [
+    {
+      "name": "Marc Stammerjohann",
+      "url": "https://notiz.dev/authors/marc-stammerjohann"
+    }
+  ],
   "license": "MIT",
   "schematics": "./src/collection.json",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/notiz-dev/ngx-tailwind.git"
+  },
+  "bugs": {
+    "url": "https://github.com/notiz-dev/ngx-tailwind/issues"
+  },
   "ng-add": {
     "save": "devDependencies"
   },
