@@ -1,3 +1,12 @@
+## [0.5.1](https://github.com/notiz-dev/ngx-tailwind/compare/v0.5.0...v0.5.1) (2020-10-23)
+
+
+### Features
+
+* **npm-script:** add purge script for tailwind ([f13c66a](https://github.com/notiz-dev/ngx-tailwind/commit/f13c66a52c2f3331b7ed43e5e43b4564bf3898a3))
+
+
+
 # [0.5.0](https://github.com/notiz-dev/ngx-tailwind/compare/v0.2.0...v0.5.0) (2020-10-23)
 
 
