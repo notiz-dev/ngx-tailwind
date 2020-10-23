@@ -10,6 +10,11 @@ import {
 } from '@angular-devkit/schematics';
 import { Schema } from './schema';
 import {
+  getProjectFromWorkspace,
+  getProjectStyleFile,
+  getTargetsByBuilderName,
+} from '@angular/cdk/schematics';
+import {
   NodePackageInstallTask,
   RunSchematicTask,
 } from '@angular-devkit/schematics/tasks';
@@ -17,20 +22,23 @@ import {
   addPackageJsonDependency,
   NodeDependencyType,
 } from '@schematics/angular/utility/dependencies';
-import { getWorkspace } from '@schematics/angular/utility/workspace';
-import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
+import {
+  getWorkspace as getWorkspaceConfig,
+  updateWorkspace,
+} from '@schematics/angular/utility/config';
+import { InsertChange } from '@schematics/angular/utility/change';
+import { Builders } from '@schematics/angular/utility/workspace-models';
+
+const NGX_BUILD_PLUS_BUILDER_TARGET = 'ngx-build-plus:browser';
+const NGX_BUILD_PLUS_DEV_BUILDER_TARGET = 'ngx-build-plus:dev-server';
+const NGX_BUILD_PLUS_KARMA_BUILDER_TARGET = 'ngx-build-plus:karma';
 
 export function ngAdd(_options: Schema): Rule {
   return async (host: Tree) => {
-    const workspace = await getWorkspace(host);
-    const projectName =
-      _options.project || Array.from(workspace.projects)[0][0];
-    if (!projectName) {
-      throw new SchematicsException('Option "project" is required.');
-    }
-    console.log('project name', projectName);
+    const workspace = getWorkspaceConfig(host);
+    const project = getProjectFromWorkspace(workspace, _options.project);
 
-    const project = workspace.projects.get(projectName);
+    const projectName = _options.project || Object.keys(workspace.projects)[0];
 
     if (!project) {
       throw new SchematicsException(
@@ -38,16 +46,27 @@ export function ngAdd(_options: Schema): Rule {
       );
     }
 
-    if (project.extensions['projectType'] !== 'application') {
+    if (project.projectType !== 'application') {
       throw new SchematicsException(
-        `@angular/elements requires a project type of "application" but ${projectName} isn't.`,
+        `ngx-tailwind requires a project type of "application" but ${projectName} isn't.`,
       );
     }
+
+    if (
+      _options.cssFormat === 'sass' ||
+      _options.cssFormat === 'less' ||
+      _options.cssFormat === 'styl'
+    ) {
+      throw new SchematicsException(
+        `ngx-tailwind currently does not support your selected stylesheet ${_options.cssFormat}, try 'css' or 'scss'.`,
+      );
+    }
+
     return chain([
       addDependencies(_options),
-      updateStyles(project),
-      addWebpackConfig(),
-      updateAngularJSON(projectName),
+      updateStyles(_options),
+      addWebpackConfig(_options),
+      updateAngularJSON(_options),
       install(),
       tailwindInit(_options),
     ]);
@@ -60,11 +79,14 @@ function addDependencies(_options: Schema): Rule {
       name: 'tailwindcss',
       version: _options.tailwindVersion,
     });
-    addPackageJsonDependency(host, {
-      type: NodeDependencyType.Dev,
-      name: 'postcss-scss',
-      version: _options.postcssScssVersion,
-    });
+
+    if (_options.cssFormat === 'scss') {
+      addPackageJsonDependency(host, {
+        type: NodeDependencyType.Dev,
+        name: 'postcss-scss',
+        version: _options.postcssScssVersion,
+      });
+    }
 
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Dev,
@@ -86,18 +108,32 @@ function addDependencies(_options: Schema): Rule {
   };
 }
 
-function updateStyles(project: ProjectDefinition): Rule {
-  return async (host: Tree) => {
-    const path = `${project.sourceRoot}/styles.scss`;
-    const recorder = host.beginUpdate(path);
-    recorder.insertLeft(
-      0,
-      `@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities'; \n`,
-    );
-    host.commitUpdate(recorder);
+function updateStyles(options: Schema): Rule {
+  return (tree: Tree, context: SchematicContext) => {
+    const workspace = getWorkspaceConfig(tree);
+    const project = getProjectFromWorkspace(workspace, options.project);
+    const stylePath = getProjectStyleFile(project, options.cssFormat);
+
+    if (!stylePath) {
+      context.logger.error(
+        `Cannot update project styles file: Style path not found`,
+      );
+      return tree;
+    }
+
+    const insertion = new InsertChange(stylePath!, 0, getTailwindImports());
+    const recorder = tree.beginUpdate(stylePath!);
+    recorder.insertLeft(0, insertion.toAdd);
+    tree.commitUpdate(recorder);
+
+    return tree;
   };
+}
+
+function getTailwindImports(): string {
+  return `@import 'tailwindcss/base';\n
+@import 'tailwindcss/components';\n
+@import 'tailwindcss/utilities';\n`;
 }
 
 function tailwindInit(_options: Schema): Rule {
@@ -112,33 +148,68 @@ function tailwindInit(_options: Schema): Rule {
   };
 }
 
-function addWebpackConfig(): Rule {
+function addWebpackConfig(options: Schema): Rule {
   return async (_host: Tree) => {
-    const sourceTemplates = url('./templates/webpack');
+    const sourceTemplates = url(`./templates/webpack/${options.cssFormat}`);
     const sourceParametrizedTemplates = apply(sourceTemplates, []);
     return mergeWith(sourceParametrizedTemplates);
   };
 }
 
-function updateAngularJSON(project: string): Rule {
-  return async (host: Tree) => {
-    const angularConfig = host.read('/angular.json')?.toString();
-    if (angularConfig) {
-      const json = JSON.parse(angularConfig);
-      json.projects[project].architect.build.builder = 'ngx-build-plus:browser';
-      json.projects[project].architect.build.options = {
-        ...json.projects[project].architect.build.options,
-        extraWebpackConfig: './webpack.config.js',
-      };
-      json.projects[project].architect.serve.builder =
-        'ngx-build-plus:dev-server';
-      json.projects[project].architect.serve.options = {
-        ...json.projects[project].architect.serve.options,
-        extraWebpackConfig: './webpack.config.js',
-      };
+function updateAngularJSON(options: Schema): Rule {
+  return (tree: Tree, context: SchematicContext) => {
+    const workspace = getWorkspaceConfig(tree);
+    const project = getProjectFromWorkspace(workspace, options.project);
 
-      host.overwrite('/angular.json', JSON.stringify(json, null, 2));
-    }
+    const browserTargets = getTargetsByBuilderName(project, Builders.Browser);
+    const devServerTargets = getTargetsByBuilderName(
+      project,
+      Builders.DevServer,
+    );
+    const karmaServerTargets = getTargetsByBuilderName(project, Builders.Karma);
+
+    browserTargets.forEach((browserTarget) => {
+      browserTarget.builder = NGX_BUILD_PLUS_BUILDER_TARGET;
+      browserTarget.options = {
+        extraWebpackConfig: 'webpack.config.js',
+        ...(browserTarget.options as any),
+      };
+    });
+    devServerTargets.forEach((browserTarget) => {
+      browserTarget.builder = NGX_BUILD_PLUS_DEV_BUILDER_TARGET;
+      browserTarget.options = {
+        extraWebpackConfig: 'webpack.config.js',
+        ...(browserTarget.options as any),
+      };
+    });
+
+    karmaServerTargets.forEach((browserTarget) => {
+      browserTarget.builder = NGX_BUILD_PLUS_KARMA_BUILDER_TARGET;
+      browserTarget.options = {
+        extraWebpackConfig: 'webpack.config.js',
+        ...(browserTarget.options as any),
+      };
+    });
+
+    // const angularConfig = tree.read('/angular.json')?.toString();
+    // if (angularConfig) {
+    //   const json = JSON.parse(angularConfig);
+    //   json.projects[project].architect.build.builder = 'ngx-build-plus:browser';
+    //   json.projects[project].architect.build.options = {
+    //     ...json.projects[project].architect.build.options,
+    //     extraWebpackConfig: './webpack.config.js',
+    //   };
+    //   json.projects[project].architect.serve.builder =
+    //     'ngx-build-plus:dev-server';
+    //   json.projects[project].architect.serve.options = {
+    //     ...json.projects[project].architect.serve.options,
+    //     extraWebpackConfig: './webpack.config.js',
+    //   };
+
+    //   tree.overwrite('/angular.json', JSON.stringify(json, null, 2));
+    // }
+
+    return updateWorkspace(workspace)(tree, context);
   };
 }
 

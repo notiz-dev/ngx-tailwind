@@ -1,5 +1,9 @@
 export interface Schema {
   /**
+   * Css stylesheet format.
+   */
+  cssFormat: CssFormat;
+  /**
    * ngx-build-plus version.
    */
   ngxBuildPlusVersion: string;
@@ -34,3 +38,5 @@ export interface Schema {
    */
   tailwindVersion: string;
 }
+
+export type CssFormat = 'css' | 'scss' | 'sass' | 'less' | 'styl';

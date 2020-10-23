@@ -17,6 +17,7 @@
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
+            "extraWebpackConfig": "webpack.config.js",
             "outputPath": "dist/angular-workspace",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -30,8 +31,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
-            "extraWebpackConfig": "./webpack.config.js"
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -67,8 +67,8 @@
         "serve": {
           "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "angular-workspace:build",
-            "extraWebpackConfig": "./webpack.config.js"
+            "extraWebpackConfig": "webpack.config.js",
+            "browserTarget": "angular-workspace:build"
           },
           "configurations": {
             "production": {
@@ -83,8 +83,9 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "ngx-build-plus:karma",
           "options": {
+            "extraWebpackConfig": "webpack.config.js",
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",

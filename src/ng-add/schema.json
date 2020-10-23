@@ -5,6 +5,38 @@
   "type": "object",
   "description": "Add Tailwind to Angular Workspace",
   "properties": {
+    "cssFormat": {
+      "description": "The file extension or preprocessor to use for style files.",
+      "type": "string",
+      "default": "css",
+      "enum": ["css", "scss", "sass", "less", "styl"],
+      "x-prompt": {
+        "message": "Which stylesheet format are you using?",
+        "type": "list",
+        "items": [
+          {
+            "value": "css",
+            "label": "CSS"
+          },
+          {
+            "value": "scss",
+            "label": "SCSS   [ https://sass-lang.com/documentation/syntax#scss                ]"
+          },
+          {
+            "value": "sass",
+            "label": "Sass   [ https://sass-lang.com/documentation/syntax#the-indented-syntax ]"
+          },
+          {
+            "value": "less",
+            "label": "Less   [ http://lesscss.org                                             ]"
+          },
+          {
+            "value": "styl",
+            "label": "Stylus [ http://stylus-lang.com                                         ]"
+          }
+        ]
+      }
+    },
     "ngxBuildPlusVersion": {
       "type": "string",
       "description": "The ngx-build-plus version to be installed.",
