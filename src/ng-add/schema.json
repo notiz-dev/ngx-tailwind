@@ -5,12 +5,32 @@
   "type": "object",
   "description": "Add Tailwind to Angular Workspace",
   "properties": {
+    "ngxBuildPlusVersion": {
+      "type": "string",
+      "description": "The ngx-build-plus version to be installed.",
+      "default": "latest"
+    },
     "project": {
       "type": "string",
       "description": "The project in which we want to generate our component",
       "$default": {
         "$source": "projectName"
       }
+    },
+    "postcssImportVersion": {
+      "type": "string",
+      "description": "The postcss-import version to be installed.",
+      "default": "12.0.1"
+    },
+    "postcssLoaderVersion": {
+      "type": "string",
+      "description": "The postcss-loader version to be installed.",
+      "default": "latest"
+    },
+    "postcssScssVersion": {
+      "type": "string",
+      "description": "The postcss-scss version to be installed.",
+      "default": "latest"
     },
     "skipTailwindInit": {
       "type": "boolean",

@@ -63,25 +63,25 @@ function addDependencies(_options: Schema): Rule {
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Dev,
       name: 'postcss-scss',
-      version: 'latest',
+      version: _options.postcssScssVersion,
     });
 
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Dev,
       name: 'postcss-import',
-      version: 'latest',
+      version: _options.postcssImportVersion,
     });
 
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Dev,
       name: 'postcss-loader',
-      version: 'latest',
+      version: _options.postcssLoaderVersion,
     });
 
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Dev,
       name: 'ngx-build-plus',
-      version: 'latest',
+      version: _options.ngxBuildPlusVersion,
     });
   };
 }
