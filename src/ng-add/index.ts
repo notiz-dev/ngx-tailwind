@@ -23,7 +23,7 @@ import {
   NodeDependencyType,
 } from '@schematics/angular/utility/dependencies';
 import {
-  getWorkspace as getWorkspaceConfig,
+  getWorkspace,
   updateWorkspace,
 } from '@schematics/angular/utility/config';
 import { InsertChange } from '@schematics/angular/utility/change';
@@ -35,7 +35,7 @@ const NGX_BUILD_PLUS_KARMA_BUILDER_TARGET = 'ngx-build-plus:karma';
 
 export function ngAdd(_options: Schema): Rule {
   return async (host: Tree) => {
-    const workspace = getWorkspaceConfig(host);
+    const workspace = getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, _options.project);
 
     const projectName = _options.project || Object.keys(workspace.projects)[0];
@@ -64,6 +64,7 @@ export function ngAdd(_options: Schema): Rule {
 
     return chain([
       addDependencies(_options),
+      addNpmScripts(_options),
       updateStyles(_options),
       addWebpackConfig(_options),
       updateAngularJSON(_options),
@@ -72,6 +73,7 @@ export function ngAdd(_options: Schema): Rule {
     ]);
   };
 }
+
 function addDependencies(_options: Schema): Rule {
   return (host: Tree) => {
     addPackageJsonDependency(host, {
@@ -110,7 +112,7 @@ function addDependencies(_options: Schema): Rule {
 
 function updateStyles(options: Schema): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    const workspace = getWorkspaceConfig(tree);
+    const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
     const stylePath = getProjectStyleFile(project, options.cssFormat);
 
@@ -158,7 +160,7 @@ function addWebpackConfig(options: Schema): Rule {
 
 function updateAngularJSON(options: Schema): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    const workspace = getWorkspaceConfig(tree);
+    const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
 
     const browserTargets = getTargetsByBuilderName(project, Builders.Browser);
@@ -192,6 +194,24 @@ function updateAngularJSON(options: Schema): Rule {
     });
 
     return updateWorkspace(workspace)(tree, context);
+  };
+}
+
+function addNpmScripts(_options: Schema): Rule {
+  return (tree: Tree) => {
+    const pkgPath = 'package.json';
+    const buffer = tree.read(pkgPath);
+
+    if (buffer === null) {
+      throw new SchematicsException('Could not find package.json');
+    }
+
+    const pkg = JSON.parse(buffer.toString());
+
+    pkg.scripts['build:prod'] = 'NODE_ENV=production ng build --prod';
+
+    tree.overwrite(pkgPath, JSON.stringify(pkg, null, 2));
+    return tree;
   };
 }
 
