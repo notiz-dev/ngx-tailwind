@@ -191,24 +191,6 @@ function updateAngularJSON(options: Schema): Rule {
       };
     });
 
-    // const angularConfig = tree.read('/angular.json')?.toString();
-    // if (angularConfig) {
-    //   const json = JSON.parse(angularConfig);
-    //   json.projects[project].architect.build.builder = 'ngx-build-plus:browser';
-    //   json.projects[project].architect.build.options = {
-    //     ...json.projects[project].architect.build.options,
-    //     extraWebpackConfig: './webpack.config.js',
-    //   };
-    //   json.projects[project].architect.serve.builder =
-    //     'ngx-build-plus:dev-server';
-    //   json.projects[project].architect.serve.options = {
-    //     ...json.projects[project].architect.serve.options,
-    //     extraWebpackConfig: './webpack.config.js',
-    //   };
-
-    //   tree.overwrite('/angular.json', JSON.stringify(json, null, 2));
-    // }
-
     return updateWorkspace(workspace)(tree, context);
   };
 }
