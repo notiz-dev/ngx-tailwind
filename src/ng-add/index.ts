@@ -74,6 +74,12 @@ function addDependencies(_options: Schema): Rule {
 
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Dev,
+      name: 'autoprefixer',
+      version: _options.autoprefixerVersion,
+    });
+
+    addPackageJsonDependency(host, {
+      type: NodeDependencyType.Dev,
       name: 'postcss',
       version: _options.postcssVersion,
     });

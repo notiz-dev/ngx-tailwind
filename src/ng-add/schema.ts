@@ -1,8 +1,14 @@
 export interface Schema {
   /**
+   * Autoprefixer version.
+   */
+  autoprefixerVersion: string;
+
+  /**
    * Css stylesheet format.
    */
   cssFormat: CssFormat;
+
   /**
    * ngx-build-plus version.
    */

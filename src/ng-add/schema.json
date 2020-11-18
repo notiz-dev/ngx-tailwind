@@ -5,6 +5,11 @@
   "type": "object",
   "description": "Add Tailwind to Angular Workspace",
   "properties": {
+    "autoprefixerVersion": {
+      "type": "string",
+      "description": "The autoprefixer version to be installed.",
+      "default": "^10.0.2"
+    },
     "cssFormat": {
       "description": "The file extension or preprocessor to use for style files.",
       "type": "string",

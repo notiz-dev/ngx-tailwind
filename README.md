@@ -41,17 +41,18 @@ ng add ngx-tailwind --tailwindVersion 1.9.5
 
 All available flags:
 
-| Flag                    |  Description                                               | Type      |  Default                  |
-| ----------------------- | ---------------------------------------------------------- | --------- | ------------------------- |
-|  `cssFormat`            | The file extension or preprocessor to use for style files. | `css`     |  `scss`                   | `css` |
-|  `ngxBuildPlusVersion`  | The ngx-build-plus version to be installed.                | `string`  | `^10.1.1`                 |
-|  `project`              | The project to initialize with Tailwind CSS.               | `string`  | **First** Angular project |
-|  `postcssVersion`       | The postcss version to be installed.                       | `string`  | `^8.1.7`                  |
-|  `postcssImportVersion` | The postcss-import version to be installed.                | `string`  | `^13.0.0`                 |
-|  `postcssLoaderVersion` | The postcss-loader version to be installed.                | `string`  | `^4.0.4`                  |
-|  `postcssScssVersion`   | The postcss-scss version to be installed.                  | `string`  | `^3.0.4`                  |
-|  `skipTailwindInit`     | Skip initializing Tailwind.                                | `boolean` | `false`                   |
-|  `tailwindVersion`      | The Tailwind version to be installed.                      | `string`  | `^2.0.1`                  |
+| Flag                    |  Description                                               | Type             |  Default                  |
+| ----------------------- | ---------------------------------------------------------- | ---------------- | ------------------------- |
+|  `autoprefixerVersion`  | The ngx-build-plus version to be installed.                | string           | `^10.0.2`                 |
+|  `cssFormat`            | The file extension or preprocessor to use for style files. | `css` \|  `scss` | `css`                     |
+|  `ngxBuildPlusVersion`  | The ngx-build-plus version to be installed.                | `string`         | `^10.1.1`                 |
+|  `project`              | The project to initialize with Tailwind CSS.               | `string`         | **First** Angular project |
+|  `postcssVersion`       | The postcss version to be installed.                       | `string`         | `^8.1.7`                  |
+|  `postcssImportVersion` | The postcss-import version to be installed.                | `string`         | `^13.0.0`                 |
+|  `postcssLoaderVersion` | The postcss-loader version to be installed.                | `string`         | `^4.0.4`                  |
+|  `postcssScssVersion`   | The postcss-scss version to be installed.                  | `string`         | `^3.0.4`                  |
+|  `skipTailwindInit`     | Skip initializing Tailwind.                                | `boolean`        | `false`                   |
+|  `tailwindVersion`      | The Tailwind version to be installed.                      | `string`         | `^2.0.1`                  |
 
 Advanced usage
 
