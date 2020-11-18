@@ -1,4 +1,4 @@
-# Add Tailwind CSS to your Angular project
+# Tailwind CSS Schematics
 
 [![npm version](https://badge.fury.io/js/ngx-tailwind.svg)](https://www.npmjs.com/package/ngx-tailwind)
 
