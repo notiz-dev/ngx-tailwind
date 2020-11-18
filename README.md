@@ -31,8 +31,6 @@ UPDATE angular.json (3704 bytes)
     Initialized Tailwind
 ```
 
-> **Note** `postcss-import` in version `13.0.0` breaks currently the build, thus it is pinned to `12.0.1`.
-
 ## Additional options
 
 You can pass additional flags to customize the schematic. For example, if you want to install a different version for **Tailwind** use `--tailwindVersion` flag:
@@ -46,18 +44,25 @@ All available flags:
 | Flag                    |  Description                                               | Type      |  Default                  |
 | ----------------------- | ---------------------------------------------------------- | --------- | ------------------------- |
 |  `cssFormat`            | The file extension or preprocessor to use for style files. | `css`     |  `scss`                   | `css` |
-|  `ngxBuildPlusVersion`  | The ngx-build-plus version to be installed.                | `string`  | `latest`                  |
+|  `ngxBuildPlusVersion`  | The ngx-build-plus version to be installed.                | `string`  | `^10.1.1`                 |
 |  `project`              | The project to initialize with Tailwind CSS.               | `string`  | **First** Angular project |
-|  `postcssImportVersion` | The postcss-import version to be installed.                | `string`  | `12.0.1`                  |
-|  `postcssLoaderVersion` | The postcss-loader version to be installed.                | `string`  | `latest`                  |
-|  `postcssScssVersion`   | The postcss-scss version to be installed.                  | `string`  | `latest`                  |
+|  `postcssVersion`       | The postcss version to be installed.                       | `string`  | `^8.1.7`                  |
+|  `postcssImportVersion` | The postcss-import version to be installed.                | `string`  | `^13.0.0`                 |
+|  `postcssLoaderVersion` | The postcss-loader version to be installed.                | `string`  | `^4.0.4`                  |
+|  `postcssScssVersion`   | The postcss-scss version to be installed.                  | `string`  | `^3.0.4`                  |
 |  `skipTailwindInit`     | Skip initializing Tailwind.                                | `boolean` | `false`                   |
-|  `tailwindVersion`      | The Tailwind version to be installed.                      | `string`  | `latest`                  |
+|  `tailwindVersion`      | The Tailwind version to be installed.                      | `string`  | `^2.0.1`                  |
 
 Advanced usage
 
 ```bash
-ng add ngx-tailwind --cssFormat scss --tailwindVersion 1.9.5 --ngxBuildPlusVersion 10.1.1 --postcssImportVersion 12.0.1 --postcssLoaderVersion 4.0.4 --postcssScssVersion 3.0.2
+ng add ngx-tailwind --cssFormat scss --tailwindVersion 2.0.0 --ngxBuildPlusVersion 10.1.1 --postcssVersion 8.0.0 --postcssImportVersion 13.0.0 --postcssLoaderVersion 4.0.4 --postcssScssVersion 3.0.4
+```
+
+Want to integrate Tailwind CSS in version 1.x.x? No problem:
+
+```bash
+ng add ngx-tailwind --tailwindVersion 1.9.6 --ngxBuildPlusVersion 10.1.1 --postcssVersion 7.0.35 --postcssImportVersion 12.0.1 --postcssLoaderVersion 4.0.4 --postcssScssVersion 3.0.4
 ```
 
 ## Developing

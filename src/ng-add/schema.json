@@ -28,7 +28,7 @@
     "ngxBuildPlusVersion": {
       "type": "string",
       "description": "The ngx-build-plus version to be installed.",
-      "default": "latest"
+      "default": "^10.1.1"
     },
     "project": {
       "type": "string",
@@ -45,17 +45,17 @@
     "postcssImportVersion": {
       "type": "string",
       "description": "The postcss-import version to be installed.",
-      "default": "12.0.1"
+      "default": "^13.0.0"
     },
     "postcssLoaderVersion": {
       "type": "string",
       "description": "The postcss-loader version to be installed.",
-      "default": "latest"
+      "default": "^4.0.4"
     },
     "postcssScssVersion": {
       "type": "string",
       "description": "The postcss-scss version to be installed.",
-      "default": "latest"
+      "default": "^3.0.4"
     },
     "skipTailwindInit": {
       "type": "boolean",
@@ -65,7 +65,7 @@
     "tailwindVersion": {
       "type": "string",
       "description": "The Tailwind version to be installed.",
-      "default": "latest"
+      "default": "^2.0.1"
     }
   }
 }
