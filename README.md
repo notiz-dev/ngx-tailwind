@@ -22,10 +22,10 @@ Example output
 Installing packages for tooling via npm.
 Installed packages for tooling via npm.
 ? Which stylesheet format are you using? CSS
-CREATE webpack.config.js (422 bytes)
-UPDATE package.json (1406 bytes)
-UPDATE src/styles.css (177 bytes)
-UPDATE angular.json (3704 bytes)
+CREATE webpack.config.js (428 bytes)
+UPDATE package.json (1498 bytes)
+UPDATE src/styles.scss (177 bytes)
+UPDATE angular.json (3848 bytes)
 ✔ Packages installed successfully.
 ✔ Packages installed successfully.
     Initialized Tailwind
