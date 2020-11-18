@@ -7,7 +7,7 @@
     "build:watch": "tsc -p tsconfig.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "start:dev": "npm run build && cd angular-workspace && schematics ..:ng-add",
-    "start": "npm run build && cd angular-workspace && schematics ..:ng-add --debug false --tailwindVersion 1.9.5",
+    "start": "npm run build && cd angular-workspace && schematics ..:ng-add --debug false",
     "changelog": "conventional-changelog -p angular -i ./CHANGELOG.md -s",
     "rocket": "npm run build && npm publish"
   },
