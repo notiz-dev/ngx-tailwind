@@ -9,7 +9,7 @@
       "description": "The file extension or preprocessor to use for style files.",
       "type": "string",
       "default": "css",
-      "enum": ["css", "scss", "sass", "less", "styl"],
+      "enum": ["css", "scss"],
       "x-prompt": {
         "message": "Which stylesheet format are you using?",
         "type": "list",
@@ -21,18 +21,6 @@
           {
             "value": "scss",
             "label": "SCSS   [ https://sass-lang.com/documentation/syntax#scss                ]"
-          },
-          {
-            "value": "sass",
-            "label": "Sass   [ https://sass-lang.com/documentation/syntax#the-indented-syntax ]"
-          },
-          {
-            "value": "less",
-            "label": "Less   [ http://lesscss.org                                             ]"
-          },
-          {
-            "value": "styl",
-            "label": "Stylus [ http://stylus-lang.com                                         ]"
           }
         ]
       }

@@ -39,4 +39,4 @@ export interface Schema {
   tailwindVersion: string;
 }
 
-export type CssFormat = 'css' | 'scss' | 'sass' | 'less' | 'styl';
+export type CssFormat = 'css' | 'scss';

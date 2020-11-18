@@ -52,16 +52,6 @@ export function ngAdd(_options: Schema): Rule {
       );
     }
 
-    if (
-      _options.cssFormat === 'sass' ||
-      _options.cssFormat === 'less' ||
-      _options.cssFormat === 'styl'
-    ) {
-      throw new SchematicsException(
-        `ngx-tailwind currently does not support your selected stylesheet ${_options.cssFormat}, try 'css' or 'scss'.`,
-      );
-    }
-
     return chain([
       addDependencies(_options),
       addNpmScripts(_options),
