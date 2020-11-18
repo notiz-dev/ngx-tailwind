@@ -1,3 +1,15 @@
+# [1.0.0](https://github.com/notiz-dev/ngx-tailwind/compare/v0.5.0...v1.0.0) (2020-11-18)
+
+
+### Features
+
+* **dependency:** install autoprefixer@^10.0.2 ([210fa34](https://github.com/notiz-dev/ngx-tailwind/commit/210fa34df0ccd44f6a9ebe63e34d3ab74a85adec))
+* **dependency:** update default dependencies ([4395758](https://github.com/notiz-dev/ngx-tailwind/commit/4395758b3d7cd34a200d328686a9a5ef19839bfa))
+* **npm-script:** add purge script for tailwind ([f13c66a](https://github.com/notiz-dev/ngx-tailwind/commit/f13c66a52c2f3331b7ed43e5e43b4564bf3898a3))
+* **postcss:** install postcss ([dd4042b](https://github.com/notiz-dev/ngx-tailwind/commit/dd4042bc517285c581cab55b9ce7618c02ef9fef)), closes [#8](https://github.com/notiz-dev/ngx-tailwind/issues/8)
+
+
+
 ## [0.5.1](https://github.com/notiz-dev/ngx-tailwind/compare/v0.5.0...v0.5.1) (2020-10-23)
 
 
