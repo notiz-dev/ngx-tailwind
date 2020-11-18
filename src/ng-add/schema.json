@@ -37,6 +37,11 @@
         "$source": "projectName"
       }
     },
+    "postcssVersion": {
+      "type": "string",
+      "description": "The postcss version to be installed.",
+      "default": "^8.1.7"
+    },
     "postcssImportVersion": {
       "type": "string",
       "description": "The postcss-import version to be installed.",

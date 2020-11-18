@@ -14,6 +14,11 @@ export interface Schema {
   project: string;
 
   /**
+   * postcss version.
+   */
+  postcssVersion: string;
+
+  /**
    * postcss-import version.
    */
   postcssImportVersion: string;

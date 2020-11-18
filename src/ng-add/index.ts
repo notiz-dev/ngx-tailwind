@@ -72,6 +72,12 @@ function addDependencies(_options: Schema): Rule {
       version: _options.tailwindVersion,
     });
 
+    addPackageJsonDependency(host, {
+      type: NodeDependencyType.Dev,
+      name: 'postcss',
+      version: _options.postcssVersion,
+    });
+
     if (_options.cssFormat === 'scss') {
       addPackageJsonDependency(host, {
         type: NodeDependencyType.Dev,
