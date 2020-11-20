@@ -31,6 +31,16 @@ UPDATE angular.json (3848 bytes)
     Initialized Tailwind
 ```
 
+## Migrate from Tailwind CSS v1 to v2
+
+To upgrade you project from [Tailwind CSS v1.x to v2.0](https://tailwindcss.com/docs/upgrading-to-v2) run the following install command
+
+```bash
+npm i -D tailwindcss@latest postcss@latest autoprefixer@latest postcss-import@latest
+```
+
+Read the full [Upgrade Guide](https://tailwindcss.com/docs/upgrading-to-v2) to update your custom `tailwind.config.js` (e.g. [your color palette](https://tailwindcss.com/docs/upgrading-to-v2#configure-your-color-palette-explicitly)) and replace removed classes from your template (e.g. [shadow-outline and shadow-xs](https://tailwindcss.com/docs/upgrading-to-v2#replace-shadow-outline-and-shadow-xs-with-ring-utilities)).
+
 ## Additional options
 
 You can pass additional flags to customize the schematic. For example, if you want to install a different version for **Tailwind** use `--tailwindVersion` flag:
