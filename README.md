@@ -37,7 +37,10 @@ UPDATE angular.json (3848 bytes)
 To upgrade you project from [Tailwind CSS v1.x to v2.0](https://tailwindcss.com/docs/upgrading-to-v2) run the following install command
 
 ```bash
-npm i -D tailwindcss@latest postcss@latest autoprefixer@latest postcss-import@latest
+npm i -D tailwindcss@latest autoprefixer@latest postcss@latest postcss-import@latest postcss-loader@latest
+
+# using scss
+npm i -D postcss-scss@latest
 ```
 
 Read the full [Upgrade Guide](https://tailwindcss.com/docs/upgrading-to-v2) to update your custom `tailwind.config.js` (e.g. [your color palette](https://tailwindcss.com/docs/upgrading-to-v2#configure-your-color-palette-explicitly)) and replace removed classes from your template (e.g. [shadow-outline and shadow-xs](https://tailwindcss.com/docs/upgrading-to-v2#replace-shadow-outline-and-shadow-xs-with-ring-utilities)).
