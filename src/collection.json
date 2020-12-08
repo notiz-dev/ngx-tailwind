@@ -2,13 +2,13 @@
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "ng-add": {
-      "description": "Add tailwind to Angular Project.",
       "factory": "./ng-add/index#ngAdd",
+      "description": "Add Tailwind CSS to an Angular project.",
       "schema": "./ng-add/schema.json"
     },
     "tailwind-init": {
-      "description": "Run Tailwind init",
-      "factory": "./tailwind-init/index#tailwindInit"
+      "factory": "./tailwind-init/index#tailwindInit",
+      "description": "Run Tailwind init"
     }
   }
 }

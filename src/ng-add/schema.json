@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/schema",
   "id": "NGX_ADD_TAILWIND",
-  "title": "Add Tailwind to Angular Workspace",
+  "title": "Angular Tailwind CSS Schematics",
   "type": "object",
-  "description": "Add Tailwind to Angular Workspace",
+  "description": "Add Tailwind CSS to an Angular project",
   "properties": {
     "autoprefixerVersion": {
       "type": "string",
@@ -25,7 +25,7 @@
           },
           {
             "value": "scss",
-            "label": "SCSS   [ https://sass-lang.com/documentation/syntax#scss                ]"
+            "label": "SCSS [ https://sass-lang.com/documentation/syntax#scss ]"
           }
         ]
       }
