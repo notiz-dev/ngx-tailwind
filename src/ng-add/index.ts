@@ -1,3 +1,4 @@
+import { strings } from '@angular-devkit/core';
 import {
   Rule,
   SchematicContext,
@@ -7,6 +8,7 @@ import {
   url,
   apply,
   mergeWith,
+  template,
 } from '@angular-devkit/schematics';
 import { Schema } from './schema';
 import {
@@ -14,10 +16,7 @@ import {
   getProjectStyleFile,
   getTargetsByBuilderName,
 } from '@angular/cdk/schematics';
-import {
-  NodePackageInstallTask,
-  RunSchematicTask,
-} from '@angular-devkit/schematics/tasks';
+import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import {
   addPackageJsonDependency,
   NodeDependencyType,
@@ -56,10 +55,9 @@ export function ngAdd(_options: Schema): Rule {
       addDependencies(_options),
       addNpmScripts(_options),
       updateStyles(_options),
-      addWebpackConfig(_options),
+      generateConfigs(_options),
       updateAngularJSON(_options),
       install(),
-      tailwindInit(_options),
     ]);
   };
 }
@@ -140,22 +138,17 @@ function getTailwindImports(): string {
 @import 'tailwindcss/utilities';\n`;
 }
 
-function tailwindInit(_options: Schema): Rule {
-  return (_tree: Tree, context: SchematicContext) => {
-    if (!_options.skipTailwindInit) {
-      const packageInstall = context.addTask(new NodePackageInstallTask());
-      context.addTask(new RunSchematicTask('tailwind-init', {}), [
-        packageInstall,
-      ]);
-    }
-    return _tree;
-  };
-}
-
-function addWebpackConfig(options: Schema): Rule {
+/**
+ * Generate webpack and tailwind config.
+ *
+ * @param options
+ */
+function generateConfigs(options: Schema): Rule {
   return async (_host: Tree) => {
-    const sourceTemplates = url(`./templates/webpack/${options.cssFormat}`);
-    const sourceParametrizedTemplates = apply(sourceTemplates, []);
+    const sourceTemplates = url(`./files`);
+    const sourceParametrizedTemplates = apply(sourceTemplates, [
+      template({ ...options, ...strings }),
+    ]);
     return mergeWith(sourceParametrizedTemplates);
   };
 }

@@ -2,7 +2,7 @@
 src/**/*.js
 src/**/*.js.map
 src/**/*.d.ts
-!src/**/templates/**/*.js
+!src/**/files/**/*.js
 
 # IDEs
 .idea/
