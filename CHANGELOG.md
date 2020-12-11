@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/notiz-dev/ngx-tailwind/compare/v1.0.0...v1.1.0) (2020-12-11)
+
+
+### Features
+
+* **tailwind:** add simple purge option ([a6e309b](https://github.com/notiz-dev/ngx-tailwind/commit/a6e309ba07fb5fd046341773cb05b0e4a933106b))
+
+
+
 # [1.0.0](https://github.com/notiz-dev/ngx-tailwind/compare/v0.5.0...v1.0.0) (2020-11-18)
 
 
