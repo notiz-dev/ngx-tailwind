@@ -48,6 +48,16 @@ export interface Schema {
    * Tailwind CSS version.
    */
   tailwindVersion: string;
+
+  /**
+   * Set the build:prod script to be cross-platform.
+   */
+  installCrossPlatform: boolean;
+
+  /**
+   * cross-env version.
+   */
+  crossEnvVersion: string;
 }
 
 export type CssFormat = 'css' | 'scss';

@@ -71,6 +71,16 @@
       "type": "string",
       "description": "The Tailwind version to be installed.",
       "default": "^2.0.1"
+    },
+    "crossEnvVersion": {
+      "type": "string",
+      "description": "The cross-env version to be installed.",
+      "default": "^7.0.3"
+    },
+    "installCrossPlatform": {
+      "type": "boolean",
+      "description": "Set the build:prod script to be cross-platform.",
+      "default": true
     }
   }
 }
