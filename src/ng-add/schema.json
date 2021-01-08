@@ -77,10 +77,10 @@
       "description": "The cross-env version to be installed.",
       "default": "^7.0.3"
     },
-    "installCrossPlatform": {
+    "disableCrossPlatform": {
       "type": "boolean",
-      "description": "Set the build:prod script to be cross-platform.",
-      "default": true
+      "description": "Set the build:prod script to be only UNIX compatible.",
+      "default": false
     }
   }
 }

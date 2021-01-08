@@ -50,9 +50,9 @@ export interface Schema {
   tailwindVersion: string;
 
   /**
-   * Set the build:prod script to be cross-platform.
+   * Set the build:prod script to be only UNIX compatible.
    */
-  installCrossPlatform: boolean;
+  disableCrossPlatform?: boolean;
 
   /**
    * cross-env version.
