@@ -57,16 +57,16 @@ All available flags:
 
 | Flag                    |  Description                                               | Type             |  Default                  |
 | ----------------------- | ---------------------------------------------------------- | ---------------- | ------------------------- |
-|  `autoprefixerVersion`  | The autoprefixer version to be installed.                  | string           | `^10.0.2`                 |
+|  `autoprefixerVersion`  | The autoprefixer version to be installed.                  | string           | `^10.2.1`                 |
 |  `cssFormat`            | The file extension or preprocessor to use for style files. | `css` \|  `scss` | `css`                     |
-|  `ngxBuildPlusVersion`  | The ngx-build-plus version to be installed.                | `string`         | `^10.1.1`                 |
+|  `ngxBuildPlusVersion`  | The ngx-build-plus version to be installed.                | `string`         | `^11.0.0`                 |
 |  `project`              | The project to initialize with Tailwind CSS.               | `string`         | **First** Angular project |
-|  `postcssVersion`       | The postcss version to be installed.                       | `string`         | `^8.1.7`                  |
-|  `postcssImportVersion` | The postcss-import version to be installed.                | `string`         | `^13.0.0`                 |
+|  `postcssVersion`       | The postcss version to be installed.                       | `string`         | `^8.2.4`                  |
+|  `postcssImportVersion` | The postcss-import version to be installed.                | `string`         | `^14.0.0`                 |
 |  `postcssLoaderVersion` | The postcss-loader version to be installed.                | `string`         | `^4.0.4`                  |
 |  `postcssScssVersion`   | The postcss-scss version to be installed.                  | `string`         | `^3.0.4`                  |
 |  `skipTailwindInit`     | Skip initializing Tailwind.                                | `boolean`        | `false`                   |
-|  `tailwindVersion`      | The Tailwind version to be installed.                      | `string`         | `^2.0.1`                  |
+|  `tailwindVersion`      | The Tailwind version to be installed.                      | `string`         | `^2.0.2`                  |
 |  `disableCrossPlatform` | Set the build:prod script to be only UNIX compatible.      | `boolean`        | `false`                   |
 |  `crossEnvVersion`      | The cross-env version to be installed.                     | `string`         | `^7.0.3`                  |
 

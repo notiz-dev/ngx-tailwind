@@ -8,7 +8,7 @@
     "autoprefixerVersion": {
       "type": "string",
       "description": "The autoprefixer version to be installed.",
-      "default": "^10.0.2"
+      "default": "^10.2.1"
     },
     "cssFormat": {
       "description": "The file extension or preprocessor to use for style files.",
@@ -33,7 +33,7 @@
     "ngxBuildPlusVersion": {
       "type": "string",
       "description": "The ngx-build-plus version to be installed.",
-      "default": "^10.1.1"
+      "default": "^11.0.0"
     },
     "project": {
       "type": "string",
@@ -50,12 +50,12 @@
     "postcssImportVersion": {
       "type": "string",
       "description": "The postcss-import version to be installed.",
-      "default": "^13.0.0"
+      "default": "^14.0.0"
     },
     "postcssLoaderVersion": {
       "type": "string",
       "description": "The postcss-loader version to be installed.",
-      "default": "^4.0.4"
+      "default": "^4.1.0"
     },
     "postcssScssVersion": {
       "type": "string",
@@ -70,7 +70,7 @@
     "tailwindVersion": {
       "type": "string",
       "description": "The Tailwind version to be installed.",
-      "default": "^2.0.1"
+      "default": "^2.0.2"
     },
     "crossEnvVersion": {
       "type": "string",
