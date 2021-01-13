@@ -107,6 +107,14 @@ function addDependencies(_options: Schema): Rule {
       name: 'ngx-build-plus',
       version: _options.ngxBuildPlusVersion,
     });
+
+    if (!_options.disableCrossPlatform) {
+      addPackageJsonDependency(host, {
+        type: NodeDependencyType.Dev,
+        name: 'cross-env',
+        version: _options.crossEnvVersion,
+      });
+    }
   };
 }
 
@@ -203,7 +211,11 @@ function addNpmScripts(_options: Schema): Rule {
 
     const pkg = JSON.parse(buffer.toString());
 
-    pkg.scripts['build:prod'] = 'NODE_ENV=production ng build --prod';
+    if (_options.disableCrossPlatform) {
+      pkg.scripts['build:prod'] = 'NODE_ENV=production ng build --prod';
+    } else {
+      pkg.scripts['build:prod'] = 'cross-env NODE_ENV=production ng build --prod';
+    }
 
     tree.overwrite(pkgPath, JSON.stringify(pkg, null, 2));
     return tree;

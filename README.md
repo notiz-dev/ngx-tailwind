@@ -67,6 +67,8 @@ All available flags:
 |  `postcssScssVersion`   | The postcss-scss version to be installed.                  | `string`         | `^3.0.4`                  |
 |  `skipTailwindInit`     | Skip initializing Tailwind.                                | `boolean`        | `false`                   |
 |  `tailwindVersion`      | The Tailwind version to be installed.                      | `string`         | `^2.0.1`                  |
+|  `disableCrossPlatform` | Set the build:prod script to be only UNIX compatible.      | `boolean`        | `false`                   |
+|  `crossEnvVersion`      | The cross-env version to be installed.                     | `string`         | `^7.0.3`                  |
 
 Advanced usage
 
@@ -78,6 +80,13 @@ Want to integrate Tailwind CSS in version 1.x.x? No problem:
 
 ```bash
 ng add ngx-tailwind --tailwindVersion 1.9.6 --ngxBuildPlusVersion 10.1.1 --postcssVersion 7.0.35 --postcssImportVersion 12.0.1 --postcssLoaderVersion 4.0.4 --postcssScssVersion 3.0.4
+```
+
+By default, `cross-env` is added to the `build:prod` script to be able to set `NODE_ENV=prod` cross-platform.
+If you want to override the default behavior, you can set the flag `--disableCrossPlatform`:
+
+```bash
+ng add ngx-tailwind --disableCrossPlatform
 ```
 
 ## Developing
