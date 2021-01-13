@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:prod": "NODE_ENV=production ng build --prod"
+    "build:prod": "cross-env NODE_ENV=production ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -34,6 +34,7 @@
     "@types/jasminewd2": "~2.0.3",
     "autoprefixer": "^10.0.2",
     "codelyzer": "^6.0.0",
+    "cross-env": "^7.0.3",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.1.1",
