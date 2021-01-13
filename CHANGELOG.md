@@ -1,3 +1,18 @@
+# [1.2.0](https://github.com/notiz-dev/ngx-tailwind/compare/v1.1.0...v1.2.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* **cross-env:** modify the flag installCrossPlatform to disableCrossPlatform ([af3d717](https://github.com/notiz-dev/ngx-tailwind/commit/af3d71727fa65e2642e3e8991a8a985cd3366832))
+
+
+### Features
+
+* **cross-env:** add cross-env to build:prod script ([2be0001](https://github.com/notiz-dev/ngx-tailwind/commit/2be0001e0737509aa57c41510de4fc972b8209c2))
+* **deps:** update dependencies ([651fda8](https://github.com/notiz-dev/ngx-tailwind/commit/651fda8df9eb1276a3d2980420632640b1db825f))
+
+
+
 # [1.1.0](https://github.com/notiz-dev/ngx-tailwind/compare/v1.0.0...v1.1.0) (2020-12-11)
 
 
