@@ -1,6 +1,6 @@
 {
   "name": "ngx-tailwind",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Add tailwind to an Angular Workspace",
   "scripts": {
     "build": "tsc -p tsconfig.json",

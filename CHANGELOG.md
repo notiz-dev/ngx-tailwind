@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/notiz-dev/ngx-tailwind/compare/v1.2.0...v1.3.0) (2021-01-19)
+
+
+### Features
+
+* **plugins:** select and install [@tailwindcss](https://github.com/tailwindcss) core plugins ([97716c8](https://github.com/notiz-dev/ngx-tailwind/commit/97716c8870cfb9ac7e3a1948f2c9725d113b6a9e))
+
+
+
 # [1.2.0](https://github.com/notiz-dev/ngx-tailwind/compare/v1.1.0...v1.2.0) (2021-01-13)
 
 
