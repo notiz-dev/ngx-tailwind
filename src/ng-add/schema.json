@@ -81,6 +81,16 @@
       "type": "boolean",
       "description": "Set the build:prod script to be only UNIX compatible.",
       "default": false
+    },
+    "tailwindPlugins": {
+      "description": "@tailwindcss plugins installed and added to tailwind.config.js",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": ["aspect-ratio", "forms", "line-clamp", "typography"],
+        "type": "string"
+      },
+      "x-prompt": "Which @tailwindcss plugins do you want to install?"
     }
   }
 }

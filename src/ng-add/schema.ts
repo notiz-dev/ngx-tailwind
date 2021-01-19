@@ -58,6 +58,11 @@ export interface Schema {
    * cross-env version.
    */
   crossEnvVersion: string;
+
+  /**
+   * @tailwindcss plugins installed and added to tailwind.config.js
+   */
+  tailwindPlugins: string[];
 }
 
 export type CssFormat = 'css' | 'scss';

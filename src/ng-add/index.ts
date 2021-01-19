@@ -51,11 +51,20 @@ export function ngAdd(_options: Schema): Rule {
       );
     }
 
+    const tailwindPlugins = _options.tailwindPlugins || [];
+    const tailwindPluginDependencies = tailwindPlugins?.map(
+      (plugin) => `@tailwindcss/${plugin}`,
+    );
+    const requireTailwindPlugins = tailwindPluginDependencies.map(
+      (plugin) => `require('${plugin}')\n`,
+    );
+
     return chain([
       addDependencies(_options),
+      addTailwindPlugins(tailwindPluginDependencies),
       addNpmScripts(_options),
       updateStyles(_options),
-      generateConfigs(_options),
+      generateConfigs(_options, requireTailwindPlugins),
       updateAngularJSON(_options),
       install(),
     ]);
@@ -118,6 +127,18 @@ function addDependencies(_options: Schema): Rule {
   };
 }
 
+function addTailwindPlugins(tailwindPlugins: string[]): Rule {
+  return (host: Tree) => {
+    tailwindPlugins.forEach((plugin) =>
+      addPackageJsonDependency(host, {
+        type: NodeDependencyType.Dev,
+        name: plugin,
+        version: 'latest',
+      }),
+    );
+  };
+}
+
 function updateStyles(options: Schema): Rule {
   return (tree: Tree, context: SchematicContext) => {
     const workspace = getWorkspace(tree);
@@ -151,11 +172,18 @@ function getTailwindImports(): string {
  *
  * @param options
  */
-function generateConfigs(options: Schema): Rule {
+function generateConfigs(
+  options: Schema,
+  requireTailwindPlugins: string[],
+): Rule {
   return async (_host: Tree) => {
     const sourceTemplates = url(`./files`);
     const sourceParametrizedTemplates = apply(sourceTemplates, [
-      template({ ...options, ...strings }),
+      template({
+        ...options,
+        requireTailwindPlugins: requireTailwindPlugins,
+        ...strings,
+      }),
     ]);
     return mergeWith(sourceParametrizedTemplates);
   };
@@ -214,7 +242,8 @@ function addNpmScripts(_options: Schema): Rule {
     if (_options.disableCrossPlatform) {
       pkg.scripts['build:prod'] = 'NODE_ENV=production ng build --prod';
     } else {
-      pkg.scripts['build:prod'] = 'cross-env NODE_ENV=production ng build --prod';
+      pkg.scripts['build:prod'] =
+        'cross-env NODE_ENV=production ng build --prod';
     }
 
     tree.overwrite(pkgPath, JSON.stringify(pkg, null, 2));
