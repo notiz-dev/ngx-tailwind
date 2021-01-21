@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/notiz-dev/ngx-tailwind/compare/v1.3.0...v2.0.0) (2021-01-21)
+
+
+### Bug Fixes
+
+* **workspace:** new workspace utils import for angular 11 ([5926df3](https://github.com/notiz-dev/ngx-tailwind/commit/5926df3c93e294b179105ec913b874dd7e278736))
+
+
+### Features
+
+* **deps:** update to latest deps ([681b5eb](https://github.com/notiz-dev/ngx-tailwind/commit/681b5ebd3bccd847c21b4008325a17a8175ea359))
+
+
+
 # [1.3.0](https://github.com/notiz-dev/ngx-tailwind/compare/v1.2.0...v1.3.0) (2021-01-19)
 
 
