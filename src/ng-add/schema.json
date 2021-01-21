@@ -8,7 +8,7 @@
     "autoprefixerVersion": {
       "type": "string",
       "description": "The autoprefixer version to be installed.",
-      "default": "^10.2.1"
+      "default": "^10.2.3"
     },
     "cssFormat": {
       "description": "The file extension or preprocessor to use for style files.",
@@ -45,7 +45,7 @@
     "postcssVersion": {
       "type": "string",
       "description": "The postcss version to be installed.",
-      "default": "^8.1.7"
+      "default": "^8.2.4"
     },
     "postcssImportVersion": {
       "type": "string",
@@ -55,7 +55,7 @@
     "postcssLoaderVersion": {
       "type": "string",
       "description": "The postcss-loader version to be installed.",
-      "default": "^4.1.0"
+      "default": "^4.2.0"
     },
     "postcssScssVersion": {
       "type": "string",
