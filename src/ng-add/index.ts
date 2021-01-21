@@ -24,9 +24,10 @@ import {
 import {
   getWorkspace,
   updateWorkspace,
-} from '@schematics/angular/utility/config';
+} from '@schematics/angular/utility/workspace';
 import { InsertChange } from '@schematics/angular/utility/change';
 import { Builders } from '@schematics/angular/utility/workspace-models';
+import { WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
 
 const NGX_BUILD_PLUS_BUILDER_TARGET = 'ngx-build-plus:browser';
 const NGX_BUILD_PLUS_DEV_BUILDER_TARGET = 'ngx-build-plus:dev-server';
@@ -34,7 +35,7 @@ const NGX_BUILD_PLUS_KARMA_BUILDER_TARGET = 'ngx-build-plus:karma';
 
 export function ngAdd(_options: Schema): Rule {
   return async (host: Tree) => {
-    const workspace = getWorkspace(host);
+    const workspace = await getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, _options.project);
 
     const projectName = _options.project || Object.keys(workspace.projects)[0];
@@ -45,11 +46,12 @@ export function ngAdd(_options: Schema): Rule {
       );
     }
 
-    if (project.projectType !== 'application') {
-      throw new SchematicsException(
-        `ngx-tailwind requires a project type of "application" but ${projectName} isn't.`,
-      );
-    }
+    // FIXME project.projectType not available anymore with angular 11
+    // if (project.projectType !== 'application') {
+    //   throw new SchematicsException(
+    //     `ngx-tailwind requires a project type of "application" but ${projectName} isn't.`,
+    //   );
+    // }
 
     const tailwindPlugins = _options.tailwindPlugins || [];
     const tailwindPluginDependencies = tailwindPlugins?.map(
@@ -63,9 +65,9 @@ export function ngAdd(_options: Schema): Rule {
       addDependencies(_options),
       addTailwindPlugins(tailwindPluginDependencies),
       addNpmScripts(_options),
-      updateStyles(_options),
+      updateStyles(_options, workspace),
       generateConfigs(_options, requireTailwindPlugins),
-      updateAngularJSON(_options),
+      updateAngularJSON(_options, workspace),
       install(),
     ]);
   };
@@ -128,9 +130,9 @@ function addDependencies(_options: Schema): Rule {
 }
 
 function addTailwindPlugins(tailwindPlugins: string[]): Rule {
-  return (host: Tree) => {
+  return (tree: Tree) => {
     tailwindPlugins.forEach((plugin) =>
-      addPackageJsonDependency(host, {
+      addPackageJsonDependency(tree, {
         type: NodeDependencyType.Dev,
         name: plugin,
         version: 'latest',
@@ -139,9 +141,8 @@ function addTailwindPlugins(tailwindPlugins: string[]): Rule {
   };
 }
 
-function updateStyles(options: Schema): Rule {
+function updateStyles(options: Schema, workspace: WorkspaceDefinition): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
     const stylePath = getProjectStyleFile(project, options.cssFormat);
 
@@ -189,9 +190,11 @@ function generateConfigs(
   };
 }
 
-function updateAngularJSON(options: Schema): Rule {
+function updateAngularJSON(
+  options: Schema,
+  workspace: WorkspaceDefinition,
+): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
 
     const browserTargets = getTargetsByBuilderName(project, Builders.Browser);
