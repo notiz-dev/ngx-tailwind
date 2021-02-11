@@ -61,9 +61,9 @@ export function ngAdd(_options: Schema): Rule {
       (plugin) => `require('${plugin}')\n`,
     );
 
-    if(_options.angularCliWithTailwindSupport) {
+    if (_options.angularCliWithTailwindSupport) {
       return chain([
-        addDependencies(_options),
+        addDependenciesWithTailwindSupport(_options),
         addTailwindPlugins(tailwindPluginDependencies),
         addNpmScripts(_options),
         updateStyles(_options, workspace),
@@ -72,7 +72,7 @@ export function ngAdd(_options: Schema): Rule {
       ]);
     } else {
       return chain([
-        addDependencies(_options),
+        addDependenciesBeforeTailwindSupport(_options),
         addTailwindPlugins(tailwindPluginDependencies),
         addNpmScripts(_options),
         updateStyles(_options, workspace),
@@ -84,7 +84,24 @@ export function ngAdd(_options: Schema): Rule {
   };
 }
 
-function addDependencies(_options: Schema): Rule {
+function addDependenciesWithTailwindSupport(_options: Schema): Rule {
+  return (host: Tree) => {
+    addPackageJsonDependency(host, {
+      type: NodeDependencyType.Dev,
+      name: 'tailwindcss',
+      version: _options.tailwindVersion,
+    });
+
+    if (!_options.disableCrossPlatform) {
+      addPackageJsonDependency(host, {
+        type: NodeDependencyType.Dev,
+        name: 'cross-env',
+        version: _options.crossEnvVersion,
+      });
+    }
+  };
+}
+function addDependenciesBeforeTailwindSupport(_options: Schema): Rule {
   return (host: Tree) => {
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Dev,
@@ -164,7 +181,13 @@ function updateStyles(options: Schema, workspace: WorkspaceDefinition): Rule {
       return tree;
     }
 
-    const insertion = new InsertChange(stylePath!, 0, getTailwindImports());
+    const insertion = new InsertChange(
+      stylePath!,
+      0,
+      options.cssFormat === 'css'
+        ? getTailwindDirectives()
+        : getTailwindImports(),
+    );
     const recorder = tree.beginUpdate(stylePath!);
     recorder.insertLeft(0, insertion.toAdd);
     tree.commitUpdate(recorder);
@@ -173,6 +196,18 @@ function updateStyles(options: Schema, workspace: WorkspaceDefinition): Rule {
   };
 }
 
+/**
+ * Used for css stylesheets
+ */
+function getTailwindDirectives(): string {
+  return `@tailwind 'tailwindcss/base';\n
+@tailwind 'tailwindcss/components';\n
+@tailwind 'tailwindcss/utilities';\n`;
+}
+
+/**
+ * Used for scss stylesheets
+ */
 function getTailwindImports(): string {
   return `@import 'tailwindcss/base';\n
 @import 'tailwindcss/components';\n
