@@ -61,15 +61,26 @@ export function ngAdd(_options: Schema): Rule {
       (plugin) => `require('${plugin}')\n`,
     );
 
-    return chain([
-      addDependencies(_options),
-      addTailwindPlugins(tailwindPluginDependencies),
-      addNpmScripts(_options),
-      updateStyles(_options, workspace),
-      generateConfigs(_options, requireTailwindPlugins),
-      updateAngularJSON(_options, workspace),
-      install(),
-    ]);
+    if(_options.angularCliWithTailwindSupport) {
+      return chain([
+        addDependencies(_options),
+        addTailwindPlugins(tailwindPluginDependencies),
+        addNpmScripts(_options),
+        updateStyles(_options, workspace),
+        generateTailwindConfig(_options, requireTailwindPlugins),
+        install(),
+      ]);
+    } else {
+      return chain([
+        addDependencies(_options),
+        addTailwindPlugins(tailwindPluginDependencies),
+        addNpmScripts(_options),
+        updateStyles(_options, workspace),
+        generateTailwindAndWebpackConfig(_options, requireTailwindPlugins),
+        updateAngularJSON(_options, workspace),
+        install(),
+      ]);
+    }
   };
 }
 
@@ -173,12 +184,33 @@ function getTailwindImports(): string {
  *
  * @param options
  */
-function generateConfigs(
+function generateTailwindConfig(
   options: Schema,
   requireTailwindPlugins: string[],
 ): Rule {
   return async (_host: Tree) => {
-    const sourceTemplates = url(`./files`);
+    const sourceTemplates = url(`./templates/tailwind`);
+    const sourceParametrizedTemplates = apply(sourceTemplates, [
+      template({
+        ...options,
+        requireTailwindPlugins: requireTailwindPlugins,
+        ...strings,
+      }),
+    ]);
+    return mergeWith(sourceParametrizedTemplates);
+  };
+}
+/**
+ * Generate webpack and tailwind config.
+ *
+ * @param options
+ */
+function generateTailwindAndWebpackConfig(
+  options: Schema,
+  requireTailwindPlugins: string[],
+): Rule {
+  return async (_host: Tree) => {
+    const sourceTemplates = url(`./templates/configs`);
     const sourceParametrizedTemplates = apply(sourceTemplates, [
       template({
         ...options,
