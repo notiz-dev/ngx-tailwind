@@ -3,7 +3,9 @@
 [![npm version](https://badge.fury.io/js/ngx-tailwind.svg)](https://www.npmjs.com/package/ngx-tailwind)
 ![Schematics CI](https://github.com/notiz-dev/ngx-tailwind/workflows/Node.js%20CI/badge.svg)
 
-Simple [Angular](https://angular.io/) schematic initializing [Tailwind CSS](https://tailwindcss.com/) in your project and adds a custom webpack config to your build process.
+Simple [Angular](https://angular.io/) schematic initializing [Tailwind CSS](https://tailwindcss.com/) in your project. [Angular v11.2](https://twitter.com/angular/status/1359736376581840896) includes native support for Tailwind CSS. 
+
+For all versions **before** Angular v11.2 a custom webpack config is added to your build process.
 
 ## Installation
 
