@@ -1,5 +1,10 @@
 export interface Schema {
   /**
+   * Angular CLI Version above 11.2 with Tailwind CSS support.
+   */
+  angularCliWithTailwindSupport: boolean;
+
+  /**
    * Autoprefixer version.
    */
   autoprefixerVersion: string;

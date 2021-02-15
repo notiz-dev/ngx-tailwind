@@ -61,19 +61,47 @@ export function ngAdd(_options: Schema): Rule {
       (plugin) => `require('${plugin}')\n`,
     );
 
-    return chain([
-      addDependencies(_options),
-      addTailwindPlugins(tailwindPluginDependencies),
-      addNpmScripts(_options),
-      updateStyles(_options, workspace),
-      generateConfigs(_options, requireTailwindPlugins),
-      updateAngularJSON(_options, workspace),
-      install(),
-    ]);
+    if (_options.angularCliWithTailwindSupport) {
+      return chain([
+        addDependenciesWithTailwindSupport(_options),
+        addTailwindPlugins(tailwindPluginDependencies),
+        addNpmScripts(_options),
+        updateStyles(_options, workspace),
+        generateTailwindConfig(_options, requireTailwindPlugins),
+        install(),
+      ]);
+    } else {
+      return chain([
+        addDependenciesBeforeTailwindSupport(_options),
+        addTailwindPlugins(tailwindPluginDependencies),
+        addNpmScripts(_options),
+        updateStyles(_options, workspace),
+        generateTailwindAndWebpackConfig(_options, requireTailwindPlugins),
+        updateAngularJSON(_options, workspace),
+        install(),
+      ]);
+    }
   };
 }
 
-function addDependencies(_options: Schema): Rule {
+function addDependenciesWithTailwindSupport(_options: Schema): Rule {
+  return (host: Tree) => {
+    addPackageJsonDependency(host, {
+      type: NodeDependencyType.Dev,
+      name: 'tailwindcss',
+      version: _options.tailwindVersion,
+    });
+
+    if (!_options.disableCrossPlatform) {
+      addPackageJsonDependency(host, {
+        type: NodeDependencyType.Dev,
+        name: 'cross-env',
+        version: _options.crossEnvVersion,
+      });
+    }
+  };
+}
+function addDependenciesBeforeTailwindSupport(_options: Schema): Rule {
   return (host: Tree) => {
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Dev,
@@ -153,7 +181,13 @@ function updateStyles(options: Schema, workspace: WorkspaceDefinition): Rule {
       return tree;
     }
 
-    const insertion = new InsertChange(stylePath!, 0, getTailwindImports());
+    const insertion = new InsertChange(
+      stylePath!,
+      0,
+      options.cssFormat === 'css'
+        ? getTailwindDirectives()
+        : getTailwindImports(),
+    );
     const recorder = tree.beginUpdate(stylePath!);
     recorder.insertLeft(0, insertion.toAdd);
     tree.commitUpdate(recorder);
@@ -162,6 +196,18 @@ function updateStyles(options: Schema, workspace: WorkspaceDefinition): Rule {
   };
 }
 
+/**
+ * Used for css stylesheets
+ */
+function getTailwindDirectives(): string {
+  return `@tailwind 'tailwindcss/base';\n
+@tailwind 'tailwindcss/components';\n
+@tailwind 'tailwindcss/utilities';\n`;
+}
+
+/**
+ * Used for scss stylesheets
+ */
 function getTailwindImports(): string {
   return `@import 'tailwindcss/base';\n
 @import 'tailwindcss/components';\n
@@ -173,12 +219,33 @@ function getTailwindImports(): string {
  *
  * @param options
  */
-function generateConfigs(
+function generateTailwindConfig(
   options: Schema,
   requireTailwindPlugins: string[],
 ): Rule {
   return async (_host: Tree) => {
-    const sourceTemplates = url(`./files`);
+    const sourceTemplates = url(`./templates/tailwind`);
+    const sourceParametrizedTemplates = apply(sourceTemplates, [
+      template({
+        ...options,
+        requireTailwindPlugins: requireTailwindPlugins,
+        ...strings,
+      }),
+    ]);
+    return mergeWith(sourceParametrizedTemplates);
+  };
+}
+/**
+ * Generate webpack and tailwind config.
+ *
+ * @param options
+ */
+function generateTailwindAndWebpackConfig(
+  options: Schema,
+  requireTailwindPlugins: string[],
+): Rule {
+  return async (_host: Tree) => {
+    const sourceTemplates = url(`./templates/configs`);
     const sourceParametrizedTemplates = apply(sourceTemplates, [
       template({
         ...options,
