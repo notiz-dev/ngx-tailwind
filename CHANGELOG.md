@@ -1,3 +1,13 @@
+# [2.1.0](https://github.com/notiz-dev/ngx-tailwind/compare/v2.0.0...v2.1.0) (2021-02-15)
+
+
+### Features
+
+* **angular-cli:** prompt if using angular cli 11.2 or above ([fbf4637](https://github.com/notiz-dev/ngx-tailwind/commit/fbf463783c62ed283660ad2f5ea4ef862ed97263))
+* **schematics:** new setup for angular 11.2 and above ([47225ba](https://github.com/notiz-dev/ngx-tailwind/commit/47225ba5e2d0aed39000655406cf35205bd9b60c))
+
+
+
 # [2.0.0](https://github.com/notiz-dev/ngx-tailwind/compare/v1.3.0...v2.0.0) (2021-01-21)
 
 
