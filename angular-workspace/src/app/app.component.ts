@@ -3,29 +3,147 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <!--The content below is only a placeholder and can be replaced.-->
-    <div style="text-align:center" class="content">
-      <h1>
-        Welcome to {{title}}!
-      </h1>
-      <span style="display: block">{{ title }} app is running!</span>
-      <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+    <div
+      class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12"
+    >
+      <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"
+        ></div>
+        <div
+          class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20"
+        >
+          <div class="max-w-md mx-auto">
+            <div>
+              <h1 class="text-4xl">Tailwind CSS Schematics</h1>
+            </div>
+            <div class="divide-y divide-gray-200">
+              <div
+                class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7"
+              >
+                <p>
+                  Simple
+                  <a
+                    href="https://angular.io/"
+                    class="text-red-600 hover:text-red-700"
+                    >Angular</a
+                  >
+                  schematic initializing
+                  <a
+                    href="https://tailwindcss.com/"
+                    class="text-teal-600 hover:text-teal-700"
+                    >Tailwind CSS</a
+                  >
+                  in your project and adds a custom webpack config to your build
+                  process.
+                </p>
+                <ul class="list-disc space-y-2">
+                  <li class="flex items-start">
+                    <span class="h-6 flex items-center sm:h-7">
+                      <svg
+                        class="flex-shrink-0 h-5 w-5 text-teal-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                    <p class="ml-2">
+                      Creating a
+                      <code class="text-sm font-bold text-gray-900"
+                        >webpack.config.js</code
+                      >
+                      file
+                    </p>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="h-6 flex items-center sm:h-7">
+                      <svg
+                        class="flex-shrink-0 h-5 w-5 text-teal-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                    <p class="ml-2">
+                      Adding tailwind imports to
+                      <code class="text-sm font-bold text-gray-900"
+                        >src/styles.scss</code
+                      >
+                    </p>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="h-6 flex items-center sm:h-7">
+                      <svg
+                        class="flex-shrink-0 h-5 w-5 text-teal-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                    <p class="ml-2">
+                      Configuring
+                      <code class="text-sm font-bold text-gray-900"
+                        >angular.json</code
+                      >
+                      file
+                    </p>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="h-6 flex items-center sm:h-7">
+                      <svg
+                        class="flex-shrink-0 h-5 w-5 text-teal-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                    <p class="ml-2">Installing dependencies</p>
+                  </li>
+                </ul>
+                <p>
+                  Perfect to quickly get started using Angular + Tailwind CSS.
+                </p>
+              </div>
+              <div
+                class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7"
+              >
+                <p>Check out on the Schematics on GitHub</p>
+                <p>
+                  <a
+                    href="https://github.com/notiz-dev/ngx-tailwind#readme"
+                    class="text-teal-600 hover:text-teal-700"
+                  >
+                    Repo on GitHub &rarr;
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <h2>Here are some links to help you start: </h2>
-    <ul>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-      </li>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-      </li>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-      </li>
-    </ul>
-    
   `,
-  styles: []
+  styles: [],
 })
 export class AppComponent {
   title = 'angular-workspace';
