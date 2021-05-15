@@ -60,7 +60,6 @@ All available flags:
 | Flag                             |  Description                                                   | Type             |  Default                                              |
 | -------------------------------- | -------------------------------------------------------------- | ---------------- | ----------------------------------------------------- |
 |  `autoprefixerVersion`           | The autoprefixer version to be installed.                      | string           | `^10.2.4`                                             |
-|  `angularCliWithTailwindSupport` | Angular CLI Version above 11.2 with Tailwind CSS support.      | boolean          | Prompted                                              |
 |  `cssFormat`                     | The file extension or preprocessor to use for style files.     | `css` \|  `scss` | `css`                                                 |
 |  `ngxBuildPlusVersion`           | The ngx-build-plus version to be installed.                    | `string`         | `^11.0.0`                                             |
 |  `project`                       | The project to initialize with Tailwind CSS.                   | `string`         | **First** Angular project                             |

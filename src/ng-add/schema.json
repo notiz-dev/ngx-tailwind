@@ -10,11 +10,6 @@
       "description": "The autoprefixer version to be installed.",
       "default": "^10.2.5"
     },
-    "angularCliWithTailwindSupport": {
-      "description": "Angular CLI Version above 11.2 with Tailwind CSS support.",
-      "type": "boolean",
-      "x-prompt": "Are you using Angular CLI in version 11.2 or above?"
-    },
     "crossEnvVersion": {
       "type": "string",
       "description": "The cross-env version to be installed.",

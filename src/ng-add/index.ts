@@ -28,6 +28,8 @@ import {
 import { InsertChange } from '@schematics/angular/utility/change';
 import { Builders } from '@schematics/angular/utility/workspace-models';
 import { WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
+import { getCliVersionAsNumber } from '../util/ng-cli-version';
+import { hasTailwindSupport } from '../util/has-tailwind-support';
 
 const NGX_BUILD_PLUS_BUILDER_TARGET = 'ngx-build-plus:browser';
 const NGX_BUILD_PLUS_DEV_BUILDER_TARGET = 'ngx-build-plus:dev-server';
@@ -61,11 +63,13 @@ export function ngAdd(_options: Schema): Rule {
       (plugin) => `require('${plugin}')\n`,
     );
 
-    if (_options.angularCliWithTailwindSupport) {
+    const cliVersion = getCliVersionAsNumber(host);
+
+    if (hasTailwindSupport(host)) {
       return chain([
         addDependenciesWithTailwindSupport(_options),
         addTailwindPlugins(tailwindPluginDependencies),
-        addNpmScripts(_options),
+        addNpmScripts(_options, cliVersion),
         updateStyles(_options, workspace),
         generateTailwindConfig(_options, requireTailwindPlugins),
         install(),
@@ -74,7 +78,7 @@ export function ngAdd(_options: Schema): Rule {
       return chain([
         addDependenciesBeforeTailwindSupport(_options),
         addTailwindPlugins(tailwindPluginDependencies),
-        addNpmScripts(_options),
+        addNpmScripts(_options, cliVersion),
         updateStyles(_options, workspace),
         generateTailwindAndWebpackConfig(_options, requireTailwindPlugins),
         updateAngularJSON(_options, workspace),
@@ -310,7 +314,7 @@ function updateAngularJSON(
   };
 }
 
-function addNpmScripts(_options: Schema): Rule {
+function addNpmScripts(_options: Schema, cliVersion: number): Rule {
   return (tree: Tree) => {
     const pkgPath = 'package.json';
     const buffer = tree.read(pkgPath);
@@ -320,12 +324,17 @@ function addNpmScripts(_options: Schema): Rule {
     }
 
     const pkg = JSON.parse(buffer.toString());
+    let prodFlag = '--prod';
+    if (cliVersion >= 12) {
+      prodFlag = '--configuration production';
+    }
 
     if (_options.disableCrossPlatform) {
-      pkg.scripts['build:prod'] = 'NODE_ENV=production ng build --prod';
+      pkg.scripts['build:prod'] = `NODE_ENV=production ng build ${prodFlag}`;
     } else {
-      pkg.scripts['build:prod'] =
-        'cross-env NODE_ENV=production ng build --prod';
+      pkg.scripts[
+        'build:prod'
+      ] = `cross-env NODE_ENV=production ng build ${prodFlag}`;
     }
 
     tree.overwrite(pkgPath, JSON.stringify(pkg, null, 2));
