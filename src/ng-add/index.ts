@@ -92,6 +92,18 @@ function addDependenciesWithTailwindSupport(_options: Schema): Rule {
       version: _options.tailwindVersion,
     });
 
+    addPackageJsonDependency(host, {
+      type: NodeDependencyType.Dev,
+      name: 'autoprefixer',
+      version: _options.autoprefixerVersion,
+    });
+
+    addPackageJsonDependency(host, {
+      type: NodeDependencyType.Dev,
+      name: 'postcss',
+      version: _options.postcssVersion,
+    });
+
     if (!_options.disableCrossPlatform) {
       addPackageJsonDependency(host, {
         type: NodeDependencyType.Dev,
