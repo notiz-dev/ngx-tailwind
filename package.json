@@ -1,6 +1,6 @@
 {
   "name": "ngx-tailwind",
-  "version": "2.2.0-dev.0",
+  "version": "2.2.0",
   "description": "Add Tailwind CSS to an Angular Workspace",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -9,7 +9,7 @@
     "start:dev": "npm run build && cd angular-workspace && schematics ..:ng-add",
     "start": "npm run build && cd angular-workspace && schematics ..:ng-add --debug false",
     "changelog": "conventional-changelog -p angular -i ./CHANGELOG.md -s",
-    "rocket": "npm run build && npm publish --tag dev"
+    "rocket": "npm run build && npm publish"
   },
   "keywords": [
     "schematics"

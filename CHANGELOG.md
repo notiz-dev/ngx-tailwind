@@ -1,3 +1,13 @@
+# [2.2.0](https://github.com/notiz-dev/ngx-tailwind/compare/v2.1.0...v2.2.0) (2021-05-17)
+
+
+### Features
+
+* **cli:** check @angular/cli version ([d904226](https://github.com/notiz-dev/ngx-tailwind/commit/d904226c52b68e8fbc2b375c545f231d8c391812))
+* **tailwind:** add jit mode as comment to tailwind config ([388f1cf](https://github.com/notiz-dev/ngx-tailwind/commit/388f1cf98c2550e3a1dca338c40e9f9766d20ec0))
+
+
+
 # [2.1.0](https://github.com/notiz-dev/ngx-tailwind/compare/v2.0.0...v2.1.0) (2021-02-15)
 
 
