@@ -22,16 +22,15 @@ ng add ngx-tailwind --project <MY_PROJECT>
 Example output
 
 ```bash
-Installing packages for tooling via npm.
-Installed packages for tooling via npm.
-? Which stylesheet format are you using? CSS
-CREATE webpack.config.js (428 bytes)
-UPDATE package.json (1498 bytes)
+The package ngx-tailwind@dev will be installed and executed.
+Would you like to proceed? Yes
+✔ Package successfully installed.
+? Which stylesheet format are you using? SCSS [ https://sass-lang.com/documentation/syntax#scss ]
+? Which @tailwindcss plugins do you want to install? typography
+CREATE tailwind.config.js (236 bytes)
+UPDATE package.json (1095 bytes)
 UPDATE src/styles.scss (177 bytes)
-UPDATE angular.json (3848 bytes)
 ✔ Packages installed successfully.
-✔ Packages installed successfully.
-    Initialized Tailwind
 ```
 
 ## Migrate from Tailwind CSS v1 to v2
