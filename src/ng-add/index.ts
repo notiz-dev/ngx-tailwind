@@ -216,9 +216,9 @@ function updateStyles(options: Schema, workspace: WorkspaceDefinition): Rule {
  * Used for css stylesheets
  */
 function getTailwindDirectives(): string {
-  return `@tailwind 'tailwindcss/base';\n
-@tailwind 'tailwindcss/components';\n
-@tailwind 'tailwindcss/utilities';\n`;
+  return `@tailwind base;\n
+@tailwind components;\n
+@tailwind utilities;\n`;
 }
 
 /**
