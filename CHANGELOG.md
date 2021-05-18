@@ -1,3 +1,12 @@
+## [2.2.1](https://github.com/notiz-dev/ngx-tailwind/compare/v2.2.0...v2.2.1) (2021-05-18)
+
+
+### Bug Fixes
+
+* **css:** tailwind directives name ([20896a4](https://github.com/notiz-dev/ngx-tailwind/commit/20896a478ac79aacb860378a1461d9d16bcb4375))
+
+
+
 # [2.2.0](https://github.com/notiz-dev/ngx-tailwind/compare/v2.1.0...v2.2.0) (2021-05-17)
 
 
