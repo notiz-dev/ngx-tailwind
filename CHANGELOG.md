@@ -1,3 +1,12 @@
+## [2.2.2](https://github.com/notiz-dev/ngx-tailwind/compare/v2.2.1...v2.2.2) (2021-09-30)
+
+
+### Features
+
+* **schematics:** update default versions ([38006ce](https://github.com/notiz-dev/ngx-tailwind/commit/38006ce06123b95c312878822e9fd92093ced4b0))
+
+
+
 ## [2.2.1](https://github.com/notiz-dev/ngx-tailwind/compare/v2.2.0...v2.2.1) (2021-05-18)
 
 
