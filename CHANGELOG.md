@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/notiz-dev/ngx-tailwind/compare/v2.2.2...v2.3.0) (2021-12-04)
+
+### Features
+
+* **angular**: update to angular 13
+* **tailwind**: update version to latest
+
 ## [2.2.2](https://github.com/notiz-dev/ngx-tailwind/compare/v2.2.1...v2.2.2) (2021-09-30)
 
 
