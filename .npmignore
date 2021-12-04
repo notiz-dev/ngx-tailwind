@@ -4,6 +4,7 @@
 # source
 angular-workspace
 .prettierrc
+.github
 
 # misc
 .DS_Store
