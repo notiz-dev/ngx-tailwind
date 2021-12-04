@@ -26,16 +26,18 @@ import { Component } from '@angular/core';
                   <a
                     href="https://angular.io/"
                     class="text-red-600 hover:text-red-700"
-                    >Angular</a
+                    >
+                    Angular
+                    </a
                   >
                   schematic initializing
                   <a
                     href="https://tailwindcss.com/"
                     class="text-teal-600 hover:text-teal-700"
-                    >Tailwind CSS</a
-                  >
-                  in your project and adds a custom webpack config to your build
-                  process.
+                    >
+                    Tailwind CSS
+                    </a>
+                  in your project.
                 </p>
                 <ul class="list-disc space-y-2">
                   <li class="flex items-start">
@@ -55,9 +57,9 @@ import { Component } from '@angular/core';
                     <p class="ml-2">
                       Creating a
                       <code class="text-sm font-bold text-gray-900"
-                        >webpack.config.js</code
+                        >tailwind.config.js</code
                       >
-                      file
+                      file with purge option
                     </p>
                   </li>
                   <li class="flex items-start">
@@ -96,11 +98,10 @@ import { Component } from '@angular/core';
                       </svg>
                     </span>
                     <p class="ml-2">
-                      Configuring
+                      Installing Tailwind 
                       <code class="text-sm font-bold text-gray-900"
-                        >angular.json</code
+                        >plugins</code
                       >
-                      file
                     </p>
                   </li>
                   <li class="flex items-start">
