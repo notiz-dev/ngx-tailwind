@@ -12,7 +12,9 @@
     "rocket": "npm run build && npm publish --tag dev"
   },
   "keywords": [
-    "schematics"
+    "angular",
+    "schematics",
+    "tailwindcss"
   ],
   "author": "Gary Großgarten",
   "contributors": [
