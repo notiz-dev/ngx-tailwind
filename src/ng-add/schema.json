@@ -10,11 +10,6 @@
       "description": "The autoprefixer version to be installed.",
       "default": "^10.4.1"
     },
-    "crossEnvVersion": {
-      "type": "string",
-      "description": "The cross-env version to be installed.",
-      "default": "^7.0.3"
-    },
     "cssFormat": {
       "description": "The file extension or preprocessor to use for style files.",
       "type": "string",
@@ -35,11 +30,6 @@
         ]
       }
     },
-    "disableCrossPlatform": {
-      "type": "boolean",
-      "description": "Set the build:prod script to be only UNIX compatible.",
-      "default": false
-    },
     "project": {
       "type": "string",
       "description": "The project in which we want to generate our component",
@@ -51,11 +41,6 @@
       "type": "string",
       "description": "The postcss version to be installed.",
       "default": "^8.4.5"
-    },
-    "skipTailwindInit": {
-      "type": "boolean",
-      "description": "Skip initializing Tailwind.",
-      "default": false
     },
     "tailwindPlugins": {
       "description": "@tailwindcss plugins installed and added to tailwind.config.js",

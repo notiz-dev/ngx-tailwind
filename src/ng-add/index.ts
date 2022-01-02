@@ -25,7 +25,6 @@ import {
 } from '@schematics/angular/utility/workspace';
 import { InsertChange } from '@schematics/angular/utility/change';
 import { WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
-import { getCliVersionAsNumber } from '../util/ng-cli-version';
 import { hasTailwindSupport } from '../util/has-tailwind-support';
 
 export function ngAdd(_options: Schema): Rule {
@@ -56,13 +55,10 @@ export function ngAdd(_options: Schema): Rule {
       (plugin) => `require('${plugin}')\n`,
     );
 
-    const cliVersion = getCliVersionAsNumber(host);
-
     if (hasTailwindSupport(host)) {
       return chain([
         addDependenciesWithTailwindSupport(_options),
         addTailwindPlugins(tailwindPluginDependencies),
-        addNpmScripts(_options, cliVersion),
         updateStyles(_options, workspace),
         generateTailwindConfig(_options, requireTailwindPlugins),
         install(),
@@ -94,14 +90,6 @@ function addDependenciesWithTailwindSupport(_options: Schema): Rule {
       name: 'postcss',
       version: _options.postcssVersion,
     });
-
-    if (!_options.disableCrossPlatform) {
-      addPackageJsonDependency(host, {
-        type: NodeDependencyType.Dev,
-        name: 'cross-env',
-        version: _options.crossEnvVersion,
-      });
-    }
   };
 }
 
@@ -181,34 +169,6 @@ function generateTailwindConfig(
       }),
     ]);
     return mergeWith(sourceParametrizedTemplates);
-  };
-}
-
-function addNpmScripts(_options: Schema, cliVersion: number): Rule {
-  return (tree: Tree) => {
-    const pkgPath = 'package.json';
-    const buffer = tree.read(pkgPath);
-
-    if (buffer === null) {
-      throw new SchematicsException('Could not find package.json');
-    }
-
-    const pkg = JSON.parse(buffer.toString());
-    let prodFlag = '--prod';
-    if (cliVersion >= 12) {
-      prodFlag = '--configuration production';
-    }
-
-    if (_options.disableCrossPlatform) {
-      pkg.scripts['build:prod'] = `NODE_ENV=production ng build ${prodFlag}`;
-    } else {
-      pkg.scripts[
-        'build:prod'
-      ] = `cross-env NODE_ENV=production ng build ${prodFlag}`;
-    }
-
-    tree.overwrite(pkgPath, JSON.stringify(pkg, null, 2));
-    return tree;
   };
 }
 

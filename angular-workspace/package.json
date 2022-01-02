@@ -5,8 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "build:prod": "cross-env NODE_ENV=production ng build --configuration production"
+    "watch": "ng build --watch --configuration development"
   },
   "private": true,
   "dependencies": {

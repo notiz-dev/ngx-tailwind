@@ -61,6 +61,47 @@ module.exports = {
 };
 ```
 
+Remove production build script from `package.json`, which was used for purging unused styles. Since JIT Engine generates only used styles this script is not necessary anymore.
+
+```diff
+{
+  "name": "angular-workspace",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+-   "build:prod": "cross-env NODE_ENV=production ng build --configuration production"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~13.0.3",
+    "@angular/common": "~13.0.3",
+    "@angular/compiler": "~13.0.3",
+    "@angular/core": "~13.0.3",
+    "@angular/forms": "~13.0.3",
+    "@angular/platform-browser": "~13.0.3",
+    "@angular/platform-browser-dynamic": "~13.0.3",
+    "@angular/router": "~13.0.3",
+    "rxjs": "~7.4.0",
+    "tslib": "^2.3.1",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~13.0.4",
+    "@angular/cli": "~13.0.4",
+    "@angular/compiler-cli": "~13.0.3",
+    "@types/node": "^12.11.1",
+    "autoprefixer": "^10.4.1",
+-   "cross-env": "^7.0.3",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.8",
+    "typescript": "~4.4.4"
+  }
+}
+```
+
 ## Migrate from Tailwind CSS
 
 To upgrade you project from [Tailwind CSS v1.x to v2.0](https://tailwindcss.com/docs/upgrading-to-v2) run the following install command

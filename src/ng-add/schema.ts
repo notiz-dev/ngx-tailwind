@@ -20,24 +20,9 @@ export interface Schema {
   postcssVersion: string;
 
   /**
-   * Skip initializing Tailwind CSS.
-   */
-  skipTailwindInit?: boolean;
-
-  /**
    * Tailwind CSS version.
    */
   tailwindVersion: string;
-
-  /**
-   * Set the build:prod script to be only UNIX compatible.
-   */
-  disableCrossPlatform?: boolean;
-
-  /**
-   * cross-env version.
-   */
-  crossEnvVersion: string;
 
   /**
    * Official @tailwindcss/* plugins installed and added to tailwind.config.js
