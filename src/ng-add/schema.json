@@ -8,7 +8,7 @@
     "autoprefixerVersion": {
       "type": "string",
       "description": "The autoprefixer version to be installed.",
-      "default": "^10.4.0"
+      "default": "^10.4.1"
     },
     "crossEnvVersion": {
       "type": "string",
@@ -55,7 +55,7 @@
     "postcssVersion": {
       "type": "string",
       "description": "The postcss version to be installed.",
-      "default": "^8.4.4"
+      "default": "^8.4.5"
     },
     "postcssImportVersion": {
       "type": "string",
@@ -90,7 +90,7 @@
     "tailwindVersion": {
       "type": "string",
       "description": "The Tailwind version to be installed.",
-      "default": "^2.2.19"
+      "default": "^3.0.8"
     }
   }
 }

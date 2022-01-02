@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/ngx-tailwind.svg)](https://www.npmjs.com/package/ngx-tailwind)
 ![Schematics CI](https://github.com/notiz-dev/ngx-tailwind/workflows/Node.js%20CI/badge.svg)
 
-Simple [Angular](https://angular.io/) schematic initializing [Tailwind CSS](https://tailwindcss.com/) in your project. [Angular v11.2](https://twitter.com/angular/status/1359736376581840896) includes native support for Tailwind CSS. 
+Simple [Angular](https://angular.io/) schematic initializing [Tailwind CSS](https://tailwindcss.com/) in your project. [Angular v11.2](https://twitter.com/angular/status/1359736376581840896) includes native support for Tailwind CSS.
 
 For all versions **before** Angular v11.2 a custom webpack config is added to your build process.
 
@@ -56,21 +56,21 @@ ng add ngx-tailwind --tailwindVersion 1.9.5
 
 All available flags:
 
-| Flag                             |  Description                                                   | Type             |  Default                                              |
-| -------------------------------- | -------------------------------------------------------------- | ---------------- | ----------------------------------------------------- |
-|  `autoprefixerVersion`           | The autoprefixer version to be installed.                      | string           | `^10.2.4`                                             |
-|  `cssFormat`                     | The file extension or preprocessor to use for style files.     | `css` \|  `scss` | `css`                                                 |
-|  `ngxBuildPlusVersion`           | The ngx-build-plus version to be installed.                    | `string`         | `^11.0.0`                                             |
-|  `project`                       | The project to initialize with Tailwind CSS.                   | `string`         | **First** Angular project                             |
-|  `postcssVersion`                | The postcss version to be installed.                           | `string`         | `^8.2.6`                                              |
-|  `postcssImportVersion`          | The postcss-import version to be installed.                    | `string`         | `^14.0.0`                                             |
-|  `postcssLoaderVersion`          | The postcss-loader version to be installed.                    | `string`         | `^4.2.0`                                              |
-|  `postcssScssVersion`            | The postcss-scss version to be installed.                      | `string`         | `^3.0.4`                                              |
-|  `skipTailwindInit`              | Skip initializing Tailwind.                                    | `boolean`        | `false`                                               |
-|  `tailwindVersion`               | The Tailwind version to be installed.                          | `string`         | `^2.0.3`                                              |
-|  `disableCrossPlatform`          | Set the build:prod script to be only UNIX compatible.          | `boolean`        | `false`                                               |
-|  `crossEnvVersion`               | The cross-env version to be installed.                         | `string`         | `^7.0.3`                                              |
-|  `tailwindPlugins`               | @tailwindcss plugins installed and added to tailwind.config.js | `string[]`       | [`aspect-ratio`, `forms`, `line-clamp`, `typography`] |
+| Flag                   | Description                                                    | Type            | Default                                               |
+| ---------------------- | -------------------------------------------------------------- | --------------- | ----------------------------------------------------- |
+| `autoprefixerVersion`  | The autoprefixer version to be installed.                      | string          | `^10.4.1`                                             |
+| `cssFormat`            | The file extension or preprocessor to use for style files.     | `css` \| `scss` | `css`                                                 |
+| `ngxBuildPlusVersion`  | The ngx-build-plus version to be installed.                    | `string`        | `^11.0.0`                                             |
+| `project`              | The project to initialize with Tailwind CSS.                   | `string`        | **First** Angular project                             |
+| `postcssVersion`       | The postcss version to be installed.                           | `string`        | `^8.4.5`                                              |
+| `postcssImportVersion` | The postcss-import version to be installed.                    | `string`        | `^14.0.0`                                             |
+| `postcssLoaderVersion` | The postcss-loader version to be installed.                    | `string`        | `^4.2.0`                                              |
+| `postcssScssVersion`   | The postcss-scss version to be installed.                      | `string`        | `^3.0.4`                                              |
+| `skipTailwindInit`     | Skip initializing Tailwind.                                    | `boolean`       | `false`                                               |
+| `tailwindVersion`      | The Tailwind version to be installed.                          | `string`        | `^3.0.8`                                              |
+| `disableCrossPlatform` | Set the build:prod script to be only UNIX compatible.          | `boolean`       | `false`                                               |
+| `crossEnvVersion`      | The cross-env version to be installed.                         | `string`        | `^7.0.3`                                              |
+| `tailwindPlugins`      | @tailwindcss plugins installed and added to tailwind.config.js | `string[]`      | [`aspect-ratio`, `forms`, `line-clamp`, `typography`] |
 
 Advanced usage
 
