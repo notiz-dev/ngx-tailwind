@@ -40,11 +40,6 @@
       "description": "Set the build:prod script to be only UNIX compatible.",
       "default": false
     },
-    "ngxBuildPlusVersion": {
-      "type": "string",
-      "description": "The ngx-build-plus version to be installed.",
-      "default": "^11.0.0"
-    },
     "project": {
       "type": "string",
       "description": "The project in which we want to generate our component",
@@ -56,21 +51,6 @@
       "type": "string",
       "description": "The postcss version to be installed.",
       "default": "^8.4.5"
-    },
-    "postcssImportVersion": {
-      "type": "string",
-      "description": "The postcss-import version to be installed.",
-      "default": "^14.0.0"
-    },
-    "postcssLoaderVersion": {
-      "type": "string",
-      "description": "The postcss-loader version to be installed.",
-      "default": "^4.2.0"
-    },
-    "postcssScssVersion": {
-      "type": "string",
-      "description": "The postcss-scss version to be installed.",
-      "default": "^3.0.4"
     },
     "skipTailwindInit": {
       "type": "boolean",

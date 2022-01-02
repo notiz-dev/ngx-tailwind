@@ -33,7 +33,35 @@ UPDATE src/styles.scss (177 bytes)
 ✔ Packages installed successfully.
 ```
 
-## Migrate from Tailwind CSS v1 to v2
+## Upgrade Guide
+
+### Tailwind CSS v2 to v3
+
+To upgrade your project from [Tailwind CSS v2 to v3](https://tailwindcss.com/docs/upgrade-guide).
+
+```bash
+npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
+```
+
+Update your `tailwind.config.js` to the new [JIT Engine](https://tailwindcss.com/docs/upgrade-guide#migrating-to-the-jit-engine).
+
+```diff
+module.exports = {
+- // mode: 'jit',
+- purge: ['./src/**/*.{html,ts}'],
++ content: ['./src/**/*.{html,ts}'],
+- darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+- variants: {
+-   extend: {},
+- },
+  plugins: [],
+};
+```
+
+## Migrate from Tailwind CSS
 
 To upgrade you project from [Tailwind CSS v1.x to v2.0](https://tailwindcss.com/docs/upgrading-to-v2) run the following install command
 
@@ -51,7 +79,7 @@ Read the full [Upgrade Guide](https://tailwindcss.com/docs/upgrading-to-v2) to u
 You can pass additional flags to customize the schematic. For example, if you want to install a different version for **Tailwind** use `--tailwindVersion` flag:
 
 ```bash
-ng add ngx-tailwind --tailwindVersion 1.9.5
+ng add ngx-tailwind --tailwindVersion 3.0.8
 ```
 
 All available flags:
@@ -59,13 +87,9 @@ All available flags:
 | Flag                   | Description                                                    | Type            | Default                                               |
 | ---------------------- | -------------------------------------------------------------- | --------------- | ----------------------------------------------------- |
 | `autoprefixerVersion`  | The autoprefixer version to be installed.                      | string          | `^10.4.1`                                             |
-| `cssFormat`            | The file extension or preprocessor to use for style files.     | `css` \| `scss` | `css`                                                 |
-| `ngxBuildPlusVersion`  | The ngx-build-plus version to be installed.                    | `string`        | `^11.0.0`                                             |
+| `cssFormat`            | The file extension or preprocessor to use for style files.     | `css` \| `scss` | `css`                                                 |‚
 | `project`              | The project to initialize with Tailwind CSS.                   | `string`        | **First** Angular project                             |
 | `postcssVersion`       | The postcss version to be installed.                           | `string`        | `^8.4.5`                                              |
-| `postcssImportVersion` | The postcss-import version to be installed.                    | `string`        | `^14.0.0`                                             |
-| `postcssLoaderVersion` | The postcss-loader version to be installed.                    | `string`        | `^4.2.0`                                              |
-| `postcssScssVersion`   | The postcss-scss version to be installed.                      | `string`        | `^3.0.4`                                              |
 | `skipTailwindInit`     | Skip initializing Tailwind.                                    | `boolean`       | `false`                                               |
 | `tailwindVersion`      | The Tailwind version to be installed.                          | `string`        | `^3.0.8`                                              |
 | `disableCrossPlatform` | Set the build:prod script to be only UNIX compatible.          | `boolean`       | `false`                                               |
@@ -75,13 +99,13 @@ All available flags:
 Advanced usage
 
 ```bash
-ng add ngx-tailwind --cssFormat scss --tailwindVersion 2.0.0 --ngxBuildPlusVersion 10.1.1 --postcssVersion 8.0.0 --postcssImportVersion 13.0.0 --postcssLoaderVersion 4.0.4 --postcssScssVersion 3.0.4
+ng add ngx-tailwind --cssFormat scss --tailwindVersion 3.0.8 --postcssVersion 8.4.5
 ```
 
-Want to integrate Tailwind CSS in version 1.x.x? No problem:
+Want to integrate Tailwind CSS with Angular 11.1 or lower? No problem:
 
 ```bash
-ng add ngx-tailwind --tailwindVersion 1.9.6 --ngxBuildPlusVersion 10.1.1 --postcssVersion 7.0.35 --postcssImportVersion 12.0.1 --postcssLoaderVersion 4.0.4 --postcssScssVersion 3.0.4
+ng add ngx-tailwind@2.3.0
 ```
 
 By default, `cross-env` is added to the `build:prod` script to be able to set `NODE_ENV=prod` cross-platform.

@@ -10,11 +10,6 @@ export interface Schema {
   cssFormat: CssFormat;
 
   /**
-   * ngx-build-plus version.
-   */
-  ngxBuildPlusVersion: string;
-
-  /**
    * The project in which we want to generate our component.
    */
   project: string;
@@ -23,21 +18,6 @@ export interface Schema {
    * postcss version.
    */
   postcssVersion: string;
-
-  /**
-   * postcss-import version.
-   */
-  postcssImportVersion: string;
-
-  /**
-   * postcss-loader version.
-   */
-  postcssLoaderVersion: string;
-
-  /**
-   * postcss-scss version.
-   */
-  postcssScssVersion: string;
 
   /**
    * Skip initializing Tailwind CSS.
@@ -60,7 +40,7 @@ export interface Schema {
   crossEnvVersion: string;
 
   /**
-   * @tailwindcss plugins installed and added to tailwind.config.js
+   * Official @tailwindcss/* plugins installed and added to tailwind.config.js
    */
   tailwindPlugins: string[];
 }
