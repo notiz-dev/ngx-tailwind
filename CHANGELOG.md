@@ -1,3 +1,11 @@
+# [3.0.0](https://github.com/notiz-dev/ngx-tailwind/compare/v2.3.0...v3.0.0) (2022-01-02)
+
+### Features
+
+* **tailwind**: update to tailwind 3
+* **angular**: remove support for angular below 11.2
+* **angular**: remove unnecessary angular production build script
+
 # [2.3.0](https://github.com/notiz-dev/ngx-tailwind/compare/v2.2.2...v2.3.0) (2021-12-04)
 
 ### Features
