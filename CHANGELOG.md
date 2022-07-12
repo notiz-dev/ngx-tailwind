@@ -1,3 +1,10 @@
+# [4.0.0](https://github.com/notiz-dev/ngx-tailwind/compare/v3.0.0...v4.0.0) (2022-07-12)
+
+### Features
+
+* **tailwind**: add tailwind types to `tailwind.config.js``
+* **angular**: update to angular 14
+
 # [3.0.0](https://github.com/notiz-dev/ngx-tailwind/compare/v2.3.0...v3.0.0) (2022-01-02)
 
 ### Features

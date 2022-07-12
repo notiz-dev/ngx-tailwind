@@ -1,6 +1,6 @@
 {
   "name": "ngx-tailwind",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Add Tailwind CSS to an Angular Workspace",
   "scripts": {
     "build": "tsc -p tsconfig.json",
