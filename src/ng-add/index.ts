@@ -30,25 +30,14 @@ export function ngAdd(_options: Schema): Rule {
     const workspace = await getWorkspace(host);
 
     if (!_options.project) {
-      _options.project = workspace.extensions.defaultProject as string;
+      _options.project = workspace.projects.keys().next().value;
     }
 
-    const projectName = _options.project;
-
-    const project = getProjectFromWorkspace(workspace, _options.project);
-
-    if (!project) {
+    if (!_options.project) {
       throw new SchematicsException(
-        `Project ${projectName} is not defined in this workspace.`,
+        `Project ${_options.project} is not defined in this workspace.`,
       );
     }
-
-    // FIXME project.projectType not available anymore with angular 11
-    // if (project.projectType !== 'application') {
-    //   throw new SchematicsException(
-    //     `ngx-tailwind requires a project type of "application" but ${projectName} isn't.`,
-    //   );
-    // }
 
     const tailwindPlugins = _options.tailwindPlugins || [];
     const tailwindPluginDependencies = tailwindPlugins?.map(
