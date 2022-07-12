@@ -20,9 +20,7 @@ import {
   addPackageJsonDependency,
   NodeDependencyType,
 } from '@schematics/angular/utility/dependencies';
-import {
-  getWorkspace,
-} from '@schematics/angular/utility/workspace';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { InsertChange } from '@schematics/angular/utility/change';
 import { WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
 import { hasTailwindSupport } from '../util/has-tailwind-support';
@@ -30,9 +28,14 @@ import { hasTailwindSupport } from '../util/has-tailwind-support';
 export function ngAdd(_options: Schema): Rule {
   return async (host: Tree) => {
     const workspace = await getWorkspace(host);
-    const project = getProjectFromWorkspace(workspace, _options.project);
 
-    const projectName = _options.project || Object.keys(workspace.projects)[0];
+    if (!_options.project) {
+      _options.project = workspace.extensions.defaultProject as string;
+    }
+
+    const projectName = _options.project;
+
+    const project = getProjectFromWorkspace(workspace, _options.project);
 
     if (!project) {
       throw new SchematicsException(

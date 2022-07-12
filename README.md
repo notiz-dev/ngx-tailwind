@@ -126,12 +126,11 @@ ng add ngx-tailwind --tailwindVersion 3.0.8
 All available flags:
 
 | Flag                   | Description                                                    | Type            | Default                                               |
-| ---------------------- | -------------------------------------------------------------- | --------------- | ----------------------------------------------------- |
+| ---------------------- | -------------------------------------------------------------- | --------------- | ----------------------------------------------------- | --- |
 | `autoprefixerVersion`  | The autoprefixer version to be installed.                      | string          | `^10.4.1`                                             |
-| `cssFormat`            | The file extension or preprocessor to use for style files.     | `css` \| `scss` | `css`                                                 |‚
+| `cssFormat`            | The file extension or preprocessor to use for style files.     | `css` \| `scss` | `css`                                                 | ‚   |
 | `project`              | The project to initialize with Tailwind CSS.                   | `string`        | **First** Angular project                             |
-| `postcssVersion`       | The postcss version to be installed.                           | `string`        | `^8.4.5`                                              |
-| `skipTailwindInit`     | Skip initializing Tailwind.                                    | `boolean`       | `false`                                               |
+| `postcssVersion`       | The postcss version to be installed.                           | `string`        | `^8.4.5`                                              |     |
 | `tailwindVersion`      | The Tailwind version to be installed.                          | `string`        | `^3.0.8`                                              |
 | `disableCrossPlatform` | Set the build:prod script to be only UNIX compatible.          | `boolean`       | `false`                                               |
 | `crossEnvVersion`      | The cross-env version to be installed.                         | `string`        | `^7.0.3`                                              |

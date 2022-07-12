@@ -36,16 +36,14 @@
     "save": "devDependencies"
   },
   "dependencies": {
-    "@angular-devkit/core": "^13.0.4",
-    "@angular-devkit/schematics": "^13.0.4",
-    "@angular/cdk": "~13.0.3",
-    "@schematics/angular": "^13.0.4"
+    "@angular-devkit/core": "^14.0.5",
+    "@angular-devkit/schematics": "^14.0.5",
+    "@angular/cdk": "~14.0.4",
+    "@schematics/angular": "^14.0.5"
   },
   "devDependencies": {
-    "@types/jasmine": "^3.7.4",
-    "@types/node": "^12.11.1",
-    "jasmine": "^3.7.0",
-    "prettier": "~2.5.0",
-    "typescript": "~4.4.4"
+    "@types/node": "^16.11.7",
+    "prettier": "~2.7.1",
+    "typescript": "~4.7.4"
   }
 }
